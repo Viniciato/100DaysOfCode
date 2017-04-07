@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2FFE34F91CB6ABD7900D2E8 /* Pods_HundredDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */; };
 		D54372761E970F290034D771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54372751E970F290034D771 /* AppDelegate.swift */; };
 		D54372781E970F290034D771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54372771E970F290034D771 /* ViewController.swift */; };
 		D543727B1E970F290034D771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54372791E970F290034D771 /* Main.storyboard */; };
 		D543727D1E970F290034D771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D543727C1E970F290034D771 /* Assets.xcassets */; };
 		D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543727E1E970F290034D771 /* LaunchScreen.storyboard */; };
+		D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HundredDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6320C842D172AD5479D84EFC /* Pods-HundredDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HundredDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays.release.xcconfig"; sourceTree = "<group>"; };
+		A55E7FB92D889DD0258126D9 /* Pods-HundredDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HundredDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays.debug.xcconfig"; sourceTree = "<group>"; };
 		D54372721E970F290034D771 /* HundredDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HundredDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54372751E970F290034D771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D54372771E970F290034D771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,7 @@
 		D543727C1E970F290034D771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D543727F1E970F290034D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D54372811E970F290034D771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FFE34F91CB6ABD7900D2E8 /* Pods_HundredDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FA218483EB3F22355E9CA43 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A55E7FB92D889DD0258126D9 /* Pods-HundredDays.debug.xcconfig */,
+				6320C842D172AD5479D84EFC /* Pods-HundredDays.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		79C93EE25CB46CF0631D15CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D54372691E970F290034D771 = {
 			isa = PBXGroup;
 			children = (
 				D54372741E970F290034D771 /* HundredDays */,
 				D54372731E970F290034D771 /* Products */,
+				0FA218483EB3F22355E9CA43 /* Pods */,
+				79C93EE25CB46CF0631D15CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +86,7 @@
 				D543727C1E970F290034D771 /* Assets.xcassets */,
 				D543727E1E970F290034D771 /* LaunchScreen.storyboard */,
 				D54372811E970F290034D771 /* Info.plist */,
+				D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */,
 			);
 			path = HundredDays;
 			sourceTree = "<group>";
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D54372841E970F290034D771 /* Build configuration list for PBXNativeTarget "HundredDays" */;
 			buildPhases = (
+				5BF5FE35F1553748ADC0F923 /* [CP] Check Pods Manifest.lock */,
 				D543726E1E970F290034D771 /* Sources */,
 				D543726F1E970F290034D771 /* Frameworks */,
 				D54372701E970F290034D771 /* Resources */,
+				860E45273B216094313E34A1 /* [CP] Embed Pods Frameworks */,
+				A7EA310C0D1127398A78A437 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -127,10 +157,59 @@
 				D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */,
 				D543727D1E970F290034D771 /* Assets.xcassets in Resources */,
 				D543727B1E970F290034D771 /* Main.storyboard in Resources */,
+				D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5BF5FE35F1553748ADC0F923 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		860E45273B216094313E34A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7EA310C0D1127398A78A437 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D543726E1E970F290034D771 /* Sources */ = {
@@ -257,6 +336,7 @@
 		};
 		D54372851E970F290034D771 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A55E7FB92D889DD0258126D9 /* Pods-HundredDays.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VJ9FQ76YK4;
@@ -270,6 +350,7 @@
 		};
 		D54372861E970F290034D771 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6320C842D172AD5479D84EFC /* Pods-HundredDays.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VJ9FQ76YK4;
@@ -300,6 +381,7 @@
 				D54372861E970F290034D771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
