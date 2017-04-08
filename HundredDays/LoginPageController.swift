@@ -10,6 +10,7 @@ import UIKit
 
 class LoginPageController: UIPageViewController, UIPageViewControllerDataSource {
     
+    
     var views : [UIViewController] = {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let registerView = sb.instantiateViewController(withIdentifier: "RegisterView")
@@ -20,6 +21,7 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
+        self.isDoubleSided = true
         if let firstView = views.first{
             setViewControllers([firstView], direction: .forward, animated: true, completion: nil)}
         
@@ -65,5 +67,7 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
         
         return views[nextIndex]
     }
+    
+    
 
 }
