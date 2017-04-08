@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D2FFE34F91CB6ABD7900D2E8 /* Pods_HundredDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */; };
+		D50982461E98A4D4005C64AE /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982451E98A4D4005C64AE /* RegisterController.swift */; };
+		D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982471E98A72B005C64AE /* LoginPageController.swift */; };
 		D54372761E970F290034D771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54372751E970F290034D771 /* AppDelegate.swift */; };
-		D54372781E970F290034D771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54372771E970F290034D771 /* ViewController.swift */; };
+		D54372781E970F290034D771 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54372771E970F290034D771 /* LoginController.swift */; };
 		D543727B1E970F290034D771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D54372791E970F290034D771 /* Main.storyboard */; };
 		D543727D1E970F290034D771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D543727C1E970F290034D771 /* Assets.xcassets */; };
 		D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543727E1E970F290034D771 /* LaunchScreen.storyboard */; };
@@ -21,9 +23,11 @@
 		5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HundredDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6320C842D172AD5479D84EFC /* Pods-HundredDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HundredDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays.release.xcconfig"; sourceTree = "<group>"; };
 		A55E7FB92D889DD0258126D9 /* Pods-HundredDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HundredDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays.debug.xcconfig"; sourceTree = "<group>"; };
+		D50982451E98A4D4005C64AE /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		D50982471E98A72B005C64AE /* LoginPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageController.swift; sourceTree = "<group>"; };
 		D54372721E970F290034D771 /* HundredDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HundredDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D54372751E970F290034D771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D54372771E970F290034D771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D54372771E970F290034D771 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D543727A1E970F290034D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D543727C1E970F290034D771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D543727F1E970F290034D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,8 +87,10 @@
 			isa = PBXGroup;
 			children = (
 				D54372751E970F290034D771 /* AppDelegate.swift */,
-				D54372771E970F290034D771 /* ViewController.swift */,
+				D54372771E970F290034D771 /* LoginController.swift */,
 				D54372791E970F290034D771 /* Main.storyboard */,
+				D50982471E98A72B005C64AE /* LoginPageController.swift */,
+				D50982451E98A4D4005C64AE /* RegisterController.swift */,
 				D56EEC971E9817690026EB5E /* HomeViewController.swift */,
 				D543727C1E970F290034D771 /* Assets.xcassets */,
 				D543727E1E970F290034D771 /* LaunchScreen.storyboard */,
@@ -219,7 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D54372781E970F290034D771 /* ViewController.swift in Sources */,
+				D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */,
+				D50982461E98A4D4005C64AE /* RegisterController.swift in Sources */,
+				D54372781E970F290034D771 /* LoginController.swift in Sources */,
 				D54372761E970F290034D771 /* AppDelegate.swift in Sources */,
 				D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */,
 			);
