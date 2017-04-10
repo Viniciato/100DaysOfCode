@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import Firebase
 
-class RegisterController: UIViewController {
-
+class RegisterController: UIViewController, UITextFieldDelegate {
+    
+    // MARK : - Outlets
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
+    
+    // MARK : - Properties
+    var databaseReference : FIRDatabaseReference!
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupTextFields()
+        self.setupRegisterButton()
+        self.databaseReference = FireBase.getDatabaseRef()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +41,103 @@ class RegisterController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK : - View Methods
+    func setupTextFields() {
+        self.emailTextField.delegate = self
+        self.nameTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.nameTextField.autocorrectionType = .no
+        self.passwordTextField.isSecureTextEntry = true
+        self.emailTextField.autocorrectionType = .no
+        self.emailTextField.keyboardType = .emailAddress
+        self.passwordTextField.autocorrectionType = .no
     }
-    */
+    
+    func setupRegisterButton(){
+        self.registerButton.layer.cornerRadius = 5
+    }
+    
+    func handleRegister(){
+        guard let email = self.emailTextField.text, let password = self.passwordTextField.text, let name = self.nameTextField.text else{
+            MissingFieldAlert.showAlert(vc: self, title: "Error", message: "Form is not valid")
+            return
+        }
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                MissingFieldAlert.showAlert(vc: self, title: "Error", message: "\(error!)")
+                return
+            }
+            guard let uid = user?.uid else{
+                return
+            }
+            
+            let userReference = self.databaseReference.child("users").child(uid)
+            let values = ["name":name, "email":email, "profileImage":"fb-art"]
+            userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                if err != nil {
+                    MissingFieldAlert.showAlert(vc: self, title: "Error", message: err! as! String)
+                    return
+                }
+                self.becomeFirstResponder()
+                MissingFieldAlert.showAlert(vc: self, title: "Sucesso", message: "Você foi registrado com sucesso!")
+                self.clearTextFields()
+                self.goToLogin()
+            })
+        })
+    }
+    
+    func clearTextFields() {
+        let textFields = [self.emailTextField, self.nameTextField, self.passwordTextField]
+        for txtField in textFields{
+            txtField?.text?.removeAll()
+        }
+    }
+    
+    // MARK : - View Actions
+    @IBAction func goToLogin() {
+        let parent : LoginPageController = self.parent as! LoginPageController
+        parent.setFirstView()
+    }
+    
+    
+    @IBAction func tryToRegister(_ sender: UIButton) {
+        self.handleRegister()
+    }
+    
+    // MARK : - Methods Overrided of TextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case self.emailTextField:
+            self.nameTextField.becomeFirstResponder()
+        case self.nameTextField:
+            self.passwordTextField.becomeFirstResponder()
+        case self.passwordTextField:
+            self.passwordTextField.resignFirstResponder()
+            self.handleRegister()
+        default:
+            MissingFieldAlert.showAlert(vc: self, title: "Error", message: "Error should return method")
+        }
+        return true
+    }
+    
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

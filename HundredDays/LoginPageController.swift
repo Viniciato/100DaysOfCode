@@ -22,8 +22,7 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
         super.viewDidLoad()
         self.dataSource = self
         self.isDoubleSided = true
-        if let firstView = views.first{
-            setViewControllers([firstView], direction: .forward, animated: true, completion: nil)}
+        self.setFirstView()
         
 //        self.setViewControllers(self.views, direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
         
@@ -34,6 +33,15 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setFirstView(){
+        if let firstView = views.first{
+            setViewControllers([firstView], direction: .reverse, animated: true, completion: nil)}
+    }
+    
+    func setSecondView(){
+        setViewControllers([views[1]], direction: .forward, animated: true, completion: nil)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

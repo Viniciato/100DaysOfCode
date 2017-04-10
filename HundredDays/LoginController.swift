@@ -26,6 +26,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTextFields()
+        self.setupLoginButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +44,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.autocorrectionType = .no
     }
     
+    func setupLoginButton(){
+        self.loginButton.layer.cornerRadius = 5
+    }
+    
     func verifyField(textField : UITextField) -> Bool{
         var fieldValue = textField.text
         if !(fieldValue?.isEmpty)! {
@@ -56,11 +61,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK : - View Actions
-    
-    @IBAction func goTwo(_ sender: UIButton) {
-                UIApplication.shared.keyWindow?.rootViewController = storyboard!.instantiateViewController(withIdentifier: "HomeViewController")
-    }
-    
     @IBAction func tryToLogin(_ sender: UIButton) {
         if self.verifyField(textField: self.emailTextField) && self.verifyField(textField: self.passwordTextField){
             let email = self.emailTextField.text
@@ -83,9 +83,20 @@ class LoginController: UIViewController, UITextFieldDelegate {
                     }
                     return
                 }
-                self.dismiss(animated: true, completion: nil)
+                self.loadHomeController()
             })
         }
+    }
+    
+    @IBAction func goToRegister(_ sender: UIButton) {
+        let parent : LoginPageController = self.parent as! LoginPageController
+        parent.setSecondView()
+    }
+    
+    
+    
+    func loadHomeController() {
+        UIApplication.shared.keyWindow?.rootViewController = storyboard!.instantiateViewController(withIdentifier: "TabBarInitial")
     }
 
     // MARK : - Overrided Methods
@@ -101,8 +112,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
-
 }
 
 

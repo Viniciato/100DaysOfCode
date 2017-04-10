@@ -2,6 +2,8 @@
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library Access Warning</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
