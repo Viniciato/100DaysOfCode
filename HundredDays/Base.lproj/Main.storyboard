@@ -466,6 +466,7 @@
                 <tabBarController storyboardIdentifier="TabBarInitial" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q1E-qM-xJL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="weY-OA-QiQ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -540,7 +541,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="yKH-PY-hLa">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="J8n-ET-XDN" kind="push" id="fZG-gu-Zay"/>
+                                <action selector="teste:" destination="7I2-Gh-l1S" id="QVU-LQ-el3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -556,7 +557,7 @@
         <!--Editar Perfil-->
         <scene sceneID="FRM-S9-aNM">
             <objects>
-                <viewController id="J8n-ET-XDN" customClass="EditProfileController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J8n-ET-XDN" customClass="EditProfileController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dgq-jI-L5t"/>
                         <viewControllerLayoutGuide type="bottom" id="Bh1-RG-1as"/>
@@ -566,17 +567,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yhH-nK-b1c">
-                                <rect key="frame" x="96" y="72" width="128" height="128"/>
+                                <rect key="frame" x="96" y="96" width="128" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="X7e-u1-3qx"/>
-                                    <constraint firstAttribute="height" constant="128" id="oHg-DR-eaT"/>
+                                    <constraint firstAttribute="width" constant="128" id="A1C-jF-Oa6"/>
+                                    <constraint firstAttribute="height" constant="128" id="Jo8-Ga-uQm"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwT-XO-KzR">
-                                <rect key="frame" x="87" y="208" width="146" height="36"/>
+                                <rect key="frame" x="87" y="232" width="146" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="1M9-DH-0H4"/>
-                                    <constraint firstAttribute="width" constant="146" id="PH9-Nj-hzq"/>
+                                    <constraint firstAttribute="height" constant="36" id="OA6-Je-Y9b"/>
                                 </constraints>
                                 <state key="normal" title="Alterar foto do perfil"/>
                                 <connections>
@@ -586,15 +586,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yhH-nK-b1c" firstAttribute="top" secondItem="Dgq-jI-L5t" secondAttribute="bottom" constant="8" id="SiZ-uu-o4E"/>
-                            <constraint firstItem="fwT-XO-KzR" firstAttribute="top" secondItem="yhH-nK-b1c" secondAttribute="bottom" constant="8" id="lav-Ll-kRy"/>
-                            <constraint firstItem="yhH-nK-b1c" firstAttribute="centerX" secondItem="at6-fG-H1k" secondAttribute="centerX" id="pzD-Bc-wfM"/>
-                            <constraint firstItem="fwT-XO-KzR" firstAttribute="centerX" secondItem="at6-fG-H1k" secondAttribute="centerX" id="xyV-6X-Ujb"/>
+                            <constraint firstItem="fwT-XO-KzR" firstAttribute="top" secondItem="yhH-nK-b1c" secondAttribute="bottom" constant="8" id="2KX-fe-4kf"/>
+                            <constraint firstItem="fwT-XO-KzR" firstAttribute="leading" secondItem="at6-fG-H1k" secondAttribute="leading" constant="87" id="FSF-Up-irK"/>
+                            <constraint firstAttribute="trailing" secondItem="fwT-XO-KzR" secondAttribute="trailing" constant="87" id="ISE-El-gvx"/>
+                            <constraint firstItem="yhH-nK-b1c" firstAttribute="centerX" secondItem="at6-fG-H1k" secondAttribute="centerX" id="Pf4-vF-JWm"/>
+                            <constraint firstItem="yhH-nK-b1c" firstAttribute="top" secondItem="Dgq-jI-L5t" secondAttribute="bottom" constant="32" id="ufd-i3-dZ2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Editar Perfil" id="ebk-NN-fUV">
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="1yf-ff-tAJ">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="cancelEditing:" destination="J8n-ET-XDN" id="RhY-6U-Ypz"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Concluir" id="QVQ-z2-UC5">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -610,7 +614,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SdF-tr-vdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4128.75" y="923.75"/>
+            <point key="canvasLocation" x="4984" y="924"/>
         </scene>
         <!--Perfil-->
         <scene sceneID="IJO-k7-fU3">
@@ -630,6 +634,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Mr-a9-X0G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2302.5" y="923.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="351-BH-bjl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sc2-09-cfR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cIv-Ve-IEs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="J8n-ET-XDN" kind="relationship" relationship="rootViewController" id="Zo9-Yo-nl4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhM-BX-36T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4220.625" y="923.75"/>
         </scene>
     </scenes>
     <resources>

@@ -14,10 +14,9 @@ class User {
     var name : String?
     var profileImage : UIImage?
     
-    init(id : String, email : String, name : String, profileImage : UIImage){
+    init(id : String, email : String, name : String){
         self.userID = id
         self.email = email
         self.name = name
-        self.profileImage = profileImage
     }
 }
