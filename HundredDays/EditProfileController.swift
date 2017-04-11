@@ -14,6 +14,7 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK : - Properties
     var storageReference : FIRStorageReference!
     var databaseReference : FIRDatabaseReference!
+    var user : User!
     
     // MARK : - Outlets
     @IBOutlet weak var profileImageView: UIImageView!
@@ -24,6 +25,7 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         self.storageReference = FireBase.getStorageRef()
         self.databaseReference = FireBase.getDatabaseRef()
+        self.profileImageView.image = self.user.profileImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,6 +93,11 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func saveUserChanges(_ sender: UIBarButtonItem) {
         self.savePhoto()
     }
+    
+    @IBAction func cancelEditing(_ sender: UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
 
 }
 
