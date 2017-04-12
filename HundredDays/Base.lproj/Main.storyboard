@@ -504,7 +504,7 @@
                                     <constraint firstAttribute="height" constant="38" id="qCF-Xb-WaE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <color key="textColor" red="0.57457566624365475" green="0.57457566624365475" blue="0.57457566624365475" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JfK-Pt-7qD">
@@ -517,11 +517,11 @@
                                     <constraint firstAttribute="height" constant="31" id="YTN-PW-Fh8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.35810596446700504" green="0.35810596446700504" blue="0.35810596446700504" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.84999999999999998" colorSpace="deviceWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kIG-vG-WeC" firstAttribute="top" secondItem="JfK-Pt-7qD" secondAttribute="bottom" id="6cJ-vX-DAJ"/>
                             <constraint firstItem="BIF-vQ-EDK" firstAttribute="leading" secondItem="CuW-b0-CDO" secondAttribute="leading" constant="62" id="9cH-Ur-gUu"/>
@@ -539,7 +539,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Perfil" id="MbS-zN-hBi">
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="yKH-PY-hLa">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.5745756662" green="0.5745756662" blue="0.5745756662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="teste:" destination="7I2-Gh-l1S" id="QVU-LQ-el3"/>
                             </connections>

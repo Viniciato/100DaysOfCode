@@ -23,8 +23,8 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.storageReference = FireBase.getStorageRef()
-        self.databaseReference = FireBase.getDatabaseRef()
+        self.storageReference = DatabaseReference.getStorageRef()
+        self.databaseReference = DatabaseReference.getDatabaseRef()
         self.profileImageView.image = self.user.profileImage
     }
 

@@ -29,7 +29,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.setupTextFields()
         self.setupRegisterButton()
-        self.databaseReference = FireBase.getDatabaseRef()
+        self.databaseReference = DatabaseReference.getDatabaseRef()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,12 +59,12 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     func handleRegister(){
         guard let email = self.emailTextField.text, let password = self.passwordTextField.text, let name = self.nameTextField.text else{
-            MissingFieldAlert.showAlert(vc: self, title: "Error", message: "Form is not valid")
+            SimpleAlert.showAlert(vc: self, title: "Error", message: "Form is not valid")
             return
         }
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                MissingFieldAlert.showAlert(vc: self, title: "Error", message: "\(error!)")
+                SimpleAlert.showAlert(vc: self, title: "Error", message: "\(error!)")
                 return
             }
             guard let uid = user?.uid else{
@@ -75,11 +75,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             let values = ["name":name, "email":email, "profileImage":"fb-art"]
             userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if err != nil {
-                    MissingFieldAlert.showAlert(vc: self, title: "Error", message: err! as! String)
+                    SimpleAlert.showAlert(vc: self, title: "Error", message: err! as! String)
                     return
                 }
                 self.becomeFirstResponder()
-                MissingFieldAlert.showAlert(vc: self, title: "Sucesso", message: "Você foi registrado com sucesso!")
+                SimpleAlert.showAlert(vc: self, title: "Sucesso", message: "Você foi registrado com sucesso!")
                 self.clearTextFields()
                 self.goToLogin()
             })
@@ -99,7 +99,6 @@ class RegisterController: UIViewController, UITextFieldDelegate {
         parent.setFirstView()
     }
     
-    
     @IBAction func tryToRegister(_ sender: UIButton) {
         self.handleRegister()
     }
@@ -115,12 +114,10 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             self.passwordTextField.resignFirstResponder()
             self.handleRegister()
         default:
-            MissingFieldAlert.showAlert(vc: self, title: "Error", message: "Error should return method")
+            SimpleAlert.showAlert(vc: self, title: "Error", message: "Error TextField should return method")
         }
         return true
     }
-    
-
 }
 
 
