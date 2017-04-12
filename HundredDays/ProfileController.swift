@@ -13,7 +13,6 @@ class ProfileController: UIViewController {
     
     // MARK : - Properties
     var databaseReference : FIRDatabaseReference!
-    var user : User!
     var editProfileBarButtonItem : UIBarButtonItem!
 
     // MARK : - Outlets
@@ -54,8 +53,8 @@ class ProfileController: UIViewController {
             let value = snapshot.value as? NSDictionary
             let email = (value?["email"] as! String)
             let name = (value?["name"] as! String)
+            User.sharedInstance.setAttributes(id: id!, email: email, name: name)
             let profileImageUrl = (value?["profileImage"] as! String)
-            self.user = User(id: id!, email: email, name: name)
             self.downloadProfileImage(url: profileImageUrl)
         })
     }
@@ -75,7 +74,7 @@ class ProfileController: UIViewController {
                 profileImageGroup.leave()
             }
             profileImageGroup.notify(queue: .main, execute: {
-                self.user.profileImage = image
+                User.sharedInstance.profileImage = image
                 self.setupLabels()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.setEditButtonItem()
@@ -84,8 +83,8 @@ class ProfileController: UIViewController {
     }
     
     func setupLabels(){
-        self.profileImageView.image = self.user.profileImage
-        self.nameLabel.text = self.user.name
+        self.profileImageView.image = User.sharedInstance.profileImage
+        self.nameLabel.text = User.sharedInstance.name
     }
     
     func setupProfileImageView() {
@@ -99,8 +98,32 @@ class ProfileController: UIViewController {
     @IBAction func teste(_ sender: UIBarButtonItem) {
         let stor = UIStoryboard(name: "Main", bundle: nil)
         let vc = stor.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
-        vc.user = self.user
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
+    
+    @IBAction func logoutAction(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            User.sharedInstance.setAttributes(id: "", email: "", name: "")
+            User.sharedInstance.profileImage = nil
+            ScreenChange.toScreen(bundle: "Main", controllerIndetifier: "LoginPageController")
+        } catch {
+            SimpleAlert.showAlert(vc: self, title: "Error", message: "Error on logout!")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.setupLabels()
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
