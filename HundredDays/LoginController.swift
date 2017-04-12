@@ -48,6 +48,14 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.loginButton.layer.cornerRadius = 5
     }
     
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
     func verifyField(textField : UITextField) -> Bool{
         var fieldValue = textField.text
         if !(fieldValue?.isEmpty)! {
@@ -55,6 +63,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 fieldValue = fieldValue?.replacingOccurrences(of: " ", with: "")
             }
             return true
+            let user = FIRAuth.auth()?.currentUser
         }
         SimpleAlert.showAlert(vc: self, title: "Erro", message: "Por favor preencha os campos vazios")
         return false
@@ -96,7 +105,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     
     func loadHomeController() {
-        UIApplication.shared.keyWindow?.rootViewController = storyboard!.instantiateViewController(withIdentifier: "TabBarInitial")
+        ScreenChange.toScreen(bundle: "Main", controllerIndetifier: "TabBarInitial")
     }
 
     // MARK : - Overrided Methods

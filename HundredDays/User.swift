@@ -8,15 +8,20 @@
 
 import UIKit
 
-class User {
+class User{
     var userID : String?
     var email : String?
     var name : String?
     var profileImage : UIImage?
+    static let sharedInstance = User()
     
-    init(id : String, email : String, name : String){
+    private init() {}
+    
+    func setAttributes (id : String, email : String, name : String){
         self.userID = id
         self.email = email
         self.name = name
     }
+    
+    
 }
