@@ -10,8 +10,8 @@
 		D2FFE34F91CB6ABD7900D2E8 /* Pods_HundredDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B695ED6755511C88FC99D60 /* Pods_HundredDays.framework */; };
 		D50982461E98A4D4005C64AE /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982451E98A4D4005C64AE /* RegisterController.swift */; };
 		D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982471E98A72B005C64AE /* LoginPageController.swift */; };
-		D509824A1E9962C5005C64AE /* MissingFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982491E9962C5005C64AE /* MissingFieldAlert.swift */; };
-		D509824C1E9974A0005C64AE /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509824B1E9974A0005C64AE /* FireBase.swift */; };
+		D509824A1E9962C5005C64AE /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982491E9962C5005C64AE /* SimpleAlert.swift */; };
+		D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509824B1E9974A0005C64AE /* DatabaseReference.swift */; };
 		D509824E1E997D76005C64AE /* fb-art.png in Resources */ = {isa = PBXBuildFile; fileRef = D509824D1E997D76005C64AE /* fb-art.png */; };
 		D50982501E9AF9BC005C64AE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509824F1E9AF9BC005C64AE /* ProfileController.swift */; };
 		D50982521E9AFACE005C64AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982511E9AFACE005C64AE /* User.swift */; };
@@ -31,8 +31,8 @@
 		A55E7FB92D889DD0258126D9 /* Pods-HundredDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HundredDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HundredDays/Pods-HundredDays.debug.xcconfig"; sourceTree = "<group>"; };
 		D50982451E98A4D4005C64AE /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D50982471E98A72B005C64AE /* LoginPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageController.swift; sourceTree = "<group>"; };
-		D50982491E9962C5005C64AE /* MissingFieldAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFieldAlert.swift; sourceTree = "<group>"; };
-		D509824B1E9974A0005C64AE /* FireBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
+		D50982491E9962C5005C64AE /* SimpleAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
+		D509824B1E9974A0005C64AE /* DatabaseReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseReference.swift; sourceTree = "<group>"; };
 		D509824D1E997D76005C64AE /* fb-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-art.png"; sourceTree = "<group>"; };
 		D509824F1E9AF9BC005C64AE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		D50982511E9AFACE005C64AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -77,6 +77,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D50982551E9C8D86005C64AE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D509824D1E997D76005C64AE /* fb-art.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		D50982561E9C8D90005C64AE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D56EEC971E9817690026EB5E /* HomeViewController.swift */,
+				D50982451E98A4D4005C64AE /* RegisterController.swift */,
+				D50982471E98A72B005C64AE /* LoginPageController.swift */,
+				D509824F1E9AF9BC005C64AE /* ProfileController.swift */,
+				D50982531E9B02BD005C64AE /* EditProfileController.swift */,
+				D54372771E970F290034D771 /* LoginController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D50982571E9C8DA9005C64AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D50982491E9962C5005C64AE /* SimpleAlert.swift */,
+				D509824B1E9974A0005C64AE /* DatabaseReference.swift */,
+				D50982511E9AFACE005C64AE /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D50982581E9C8DC1005C64AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D50982551E9C8D86005C64AE /* images */,
+				D54372791E970F290034D771 /* Main.storyboard */,
+				D543727E1E970F290034D771 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		D54372691E970F290034D771 = {
 			isa = PBXGroup;
 			children = (
@@ -98,20 +139,11 @@
 		D54372741E970F290034D771 /* HundredDays */ = {
 			isa = PBXGroup;
 			children = (
-				D509824D1E997D76005C64AE /* fb-art.png */,
-				D50982511E9AFACE005C64AE /* User.swift */,
-				D509824B1E9974A0005C64AE /* FireBase.swift */,
-				D50982491E9962C5005C64AE /* MissingFieldAlert.swift */,
 				D54372751E970F290034D771 /* AppDelegate.swift */,
-				D54372771E970F290034D771 /* LoginController.swift */,
-				D54372791E970F290034D771 /* Main.storyboard */,
-				D50982531E9B02BD005C64AE /* EditProfileController.swift */,
-				D509824F1E9AF9BC005C64AE /* ProfileController.swift */,
-				D50982471E98A72B005C64AE /* LoginPageController.swift */,
-				D50982451E98A4D4005C64AE /* RegisterController.swift */,
-				D56EEC971E9817690026EB5E /* HomeViewController.swift */,
+				D50982561E9C8D90005C64AE /* Controller */,
+				D50982571E9C8DA9005C64AE /* Model */,
+				D50982581E9C8DC1005C64AE /* View */,
 				D543727C1E970F290034D771 /* Assets.xcassets */,
-				D543727E1E970F290034D771 /* LaunchScreen.storyboard */,
 				D54372811E970F290034D771 /* Info.plist */,
 				D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */,
 			);
@@ -244,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D509824A1E9962C5005C64AE /* MissingFieldAlert.swift in Sources */,
+				D509824A1E9962C5005C64AE /* SimpleAlert.swift in Sources */,
 				D50982541E9B02BD005C64AE /* EditProfileController.swift in Sources */,
 				D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */,
 				D50982461E98A4D4005C64AE /* RegisterController.swift in Sources */,
@@ -252,7 +284,7 @@
 				D54372761E970F290034D771 /* AppDelegate.swift in Sources */,
 				D50982521E9AFACE005C64AE /* User.swift in Sources */,
 				D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */,
-				D509824C1E9974A0005C64AE /* FireBase.swift in Sources */,
+				D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */,
 				D50982501E9AF9BC005C64AE /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

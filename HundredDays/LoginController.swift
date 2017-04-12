@@ -56,7 +56,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
             }
             return true
         }
-        MissingFieldAlert.showAlert(vc: self, title: "Erro", message: "Por favor preencha os campos vazios")
+        SimpleAlert.showAlert(vc: self, title: "Erro", message: "Por favor preencha os campos vazios")
         return false
     }
     
@@ -79,7 +79,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                         default:
                             message = "\(error!)"
                         }
-                        MissingFieldAlert.showAlert(vc: self, title: "Erro!", message: message)
+                        SimpleAlert.showAlert(vc: self, title: "Erro!", message: message)
                     }
                     return
                 }

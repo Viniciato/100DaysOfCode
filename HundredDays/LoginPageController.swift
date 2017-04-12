@@ -10,7 +10,6 @@ import UIKit
 
 class LoginPageController: UIPageViewController, UIPageViewControllerDataSource {
     
-    
     var views : [UIViewController] = {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let registerView = sb.instantiateViewController(withIdentifier: "RegisterView")
@@ -21,18 +20,11 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
-        self.isDoubleSided = true
         self.setFirstView()
-        
-//        self.setViewControllers(self.views, direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
-        
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setFirstView(){
@@ -72,10 +64,6 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
         guard viewsCount > nextIndex else {
             return nil
         }
-        
         return views[nextIndex]
     }
-    
-    
-
 }

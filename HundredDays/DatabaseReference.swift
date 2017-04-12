@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FireBase {
+class DatabaseReference {
     
     static func getDatabaseRef() -> FIRDatabaseReference{
         let database = FIRDatabase.database().reference(fromURL: "https://hundreddays-2796e.firebaseio.com/")

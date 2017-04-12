@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MissingFieldAlert {
+class SimpleAlert{
     
     // Display an alert on received UIViewController
     static func showAlert(vc : UIViewController, title : String, message : String){
