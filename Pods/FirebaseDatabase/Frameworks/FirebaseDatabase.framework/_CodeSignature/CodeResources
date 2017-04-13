@@ -1,9 +1,9 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
 	<key>files</key>
-	***REMOVED***
+	<dict>
 		<key>Headers/FIRDataEventType.h</key>
 		<data>
 		IHUoTDesNrrqRazMzENekLgwQlU=
@@ -48,11 +48,11 @@
 		<data>
 		JsRm4MDrfOXF74fpRlVXodMbvRg=
 		</data>
-	***REMOVED***
+	</dict>
 	<key>files2</key>
-	***REMOVED***
+	<dict>
 		<key>Headers/FIRDataEventType.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			IHUoTDesNrrqRazMzENekLgwQlU=
@@ -61,9 +61,9 @@
 			<data>
 			WXJlQVCZg4kmStKP80qezzU9/0ZhH+CpzIoJ5QoqSjE=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRDataSnapshot.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			Xl7BW2qYfWUtYIwmj/CjAX/asL8=
@@ -72,9 +72,9 @@
 			<data>
 			tF+Me9o5yx9pG/3g5t8n7bkaaKQdrHVqH696HOMkvPA=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRDatabase.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			LqOSlmZ5GCnw9jqvq23UOIqZbwg=
@@ -83,9 +83,9 @@
 			<data>
 			YNRzHLJPHK0TO0+exV/ONz8eB8v7gG3NjyQ5AUtlVJ0=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRDatabaseQuery.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			IXu4nAJzWixfRyJ/DFZ7bkO9PpU=
@@ -94,9 +94,9 @@
 			<data>
 			TcDQQzmwZlTrf4R7CxJUK8w33eK2v+1nxuozkxmBfJ4=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRDatabaseReference.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			aUPNeHv+7QXU77WvkkzLBflL434=
@@ -105,9 +105,9 @@
 			<data>
 			RhPGmeRksyiUQ8jBJUy9xvU675crEJCBeMNJDL7dzIM=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRMutableData.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			vJqxTHBgwCxt7s+laGQwZxr+ghU=
@@ -116,9 +116,9 @@
 			<data>
 			kE1WCOVcdnb39L0g75TwKtm2DpbhN2ziPdf3ANnbr98=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRServerValue.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			VulktzkncL3JZO9la/gruOa9LMo=
@@ -127,9 +127,9 @@
 			<data>
 			Bf4SCjXvNyv/RMB+pcImz+QXznbFWkqOO1v8VaEjnQg=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FIRTransactionResult.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			AKeMk8H7NeWIQ5v7f3CZeLTP6q4=
@@ -138,9 +138,9 @@
 			<data>
 			gdnGMJTXltmhYlQ3wkpVtx7t5/LZPhVQYHetZtiIRZI=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Headers/FirebaseDatabase.h</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			WzB+Hgl8mCR/GcXAOGW5mT4tGpM=
@@ -149,9 +149,9 @@
 			<data>
 			8fJzrSJu9I43nZLNMjsZU2CtOIgicTWtAk7DUbdcctY=
 			</data>
-		***REMOVED***
+		</dict>
 		<key>Modules/module.modulemap</key>
-		***REMOVED***
+		<dict>
 			<key>hash</key>
 			<data>
 			JsRm4MDrfOXF74fpRlVXodMbvRg=
@@ -160,102 +160,102 @@
 			<data>
 			b/upHPLrKgZQXDu4REd8zobitN6KxFXcU++KQDJdqDY=
 			</data>
-		***REMOVED***
-	***REMOVED***
+		</dict>
+	</dict>
 	<key>rules</key>
-	***REMOVED***
+	<dict>
 		<key>^</key>
-	***REMOVED***
+		<true/>
 		<key>^.*\.lproj/</key>
-		***REMOVED***
+		<dict>
 			<key>optional</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>1000</real>
-		***REMOVED***
+		</dict>
 		<key>^.*\.lproj/locversion.plist$</key>
-		***REMOVED***
+		<dict>
 			<key>omit</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>1100</real>
-		***REMOVED***
+		</dict>
 		<key>^version.plist$</key>
-	***REMOVED***
-	***REMOVED***
+		<true/>
+	</dict>
 	<key>rules2</key>
-	***REMOVED***
+	<dict>
 		<key>.*\.dSYM($|/)</key>
-		***REMOVED***
+		<dict>
 			<key>weight</key>
 			<real>11</real>
-		***REMOVED***
+		</dict>
 		<key>^</key>
-		***REMOVED***
+		<dict>
 			<key>weight</key>
 			<real>20</real>
-		***REMOVED***
+		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
-		***REMOVED***
+		<dict>
 			<key>omit</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>2000</real>
-		***REMOVED***
+		</dict>
 		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
-		***REMOVED***
+		<dict>
 			<key>nested</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>10</real>
-		***REMOVED***
+		</dict>
 		<key>^.*</key>
-	***REMOVED***
+		<true/>
 		<key>^.*\.lproj/</key>
-		***REMOVED***
+		<dict>
 			<key>optional</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>1000</real>
-		***REMOVED***
+		</dict>
 		<key>^.*\.lproj/locversion.plist$</key>
-		***REMOVED***
+		<dict>
 			<key>omit</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>1100</real>
-		***REMOVED***
+		</dict>
 		<key>^Info\.plist$</key>
-		***REMOVED***
+		<dict>
 			<key>omit</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>20</real>
-		***REMOVED***
+		</dict>
 		<key>^PkgInfo$</key>
-		***REMOVED***
+		<dict>
 			<key>omit</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>20</real>
-		***REMOVED***
+		</dict>
 		<key>^[^/]+$</key>
-		***REMOVED***
+		<dict>
 			<key>nested</key>
-		***REMOVED***
+			<true/>
 			<key>weight</key>
 			<real>10</real>
-		***REMOVED***
+		</dict>
 		<key>^embedded\.provisionprofile$</key>
-		***REMOVED***
+		<dict>
 			<key>weight</key>
 			<real>20</real>
-		***REMOVED***
+		</dict>
 		<key>^version\.plist$</key>
-		***REMOVED***
+		<dict>
 			<key>weight</key>
 			<real>20</real>
-		***REMOVED***
-	***REMOVED***
-***REMOVED***
-***REMOVED***
+		</dict>
+	</dict>
+</dict>
+</plist>

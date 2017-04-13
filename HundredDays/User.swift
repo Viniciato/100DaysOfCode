@@ -1,6 +1,6 @@
 //
 //  User.swift
-//  iDrunk
+//  NexMe
 //
 //  Created by Vinicius Nadin on 02/03/17.
 //  Copyright © 2017 Vinicius Nadin. All rights reserved.

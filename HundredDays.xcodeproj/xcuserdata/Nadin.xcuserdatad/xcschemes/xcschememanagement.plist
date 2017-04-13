@@ -1,22 +1,22 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
 	<key>SchemeUserState</key>
-	***REMOVED***
+	<dict>
 		<key>HundredDays.xcscheme</key>
-		***REMOVED***
+		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
-		***REMOVED***
-	***REMOVED***
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	***REMOVED***
+	<dict>
 		<key>D54372711E970F290034D771</key>
-		***REMOVED***
+		<dict>
 			<key>primary</key>
-		***REMOVED***
-		***REMOVED***
-	***REMOVED***
-***REMOVED***
-***REMOVED***
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

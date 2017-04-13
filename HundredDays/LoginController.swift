@@ -63,7 +63,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 fieldValue = fieldValue?.replacingOccurrences(of: " ", with: "")
             }
             return true
-            let user = FIRAuth.auth()?.currentUser
         }
         SimpleAlert.showAlert(vc: self, title: "Erro", message: "Por favor preencha os campos vazios")
         return false
