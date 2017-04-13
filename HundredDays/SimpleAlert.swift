@@ -13,7 +13,7 @@ class SimpleAlert{
     // Display an alert on received UIViewController
     static func showAlert(vc : UIViewController, title : String, message : String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let actionOk = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(actionOk)
         vc.present(alert, animated: true, completion: nil)
     }
