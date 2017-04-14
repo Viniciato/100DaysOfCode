@@ -410,6 +410,24 @@
             </objects>
             <point key="canvasLocation" x="4016" y="-754"/>
         </scene>
+        <!--Show-->
+        <scene sceneID="VG1-eR-RUb">
+            <objects>
+                <viewController title="Show" id="2M2-wi-Ovl" customClass="ShowEventController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EuP-Mr-Bhx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vui-hg-8s3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sor-aB-oVN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tnu-zZ-xoC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5839" y="-875"/>
+        </scene>
         <!--Inicio-->
         <scene sceneID="cFK-ka-VLC">
             <objects>
@@ -422,9 +440,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-fK-PID">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="237" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-fK-PID">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90980392156862744" green="0.92156862745098034" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -442,10 +460,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="eventsTableView" destination="pfN-fK-PID" id="PN6-2b-yKN"/>
+                        <segue destination="2M2-wi-Ovl" kind="show" identifier="showEvent" id="Hli-8G-sNG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgF-IT-Pad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="63"/>
+            <point key="canvasLocation" x="4984" y="69"/>
         </scene>
         <!--Inicio-->
         <scene sceneID="vte-Lp-KEn">
@@ -924,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RX-OV-SZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4984" y="-46"/>
+            <point key="canvasLocation" x="5839" y="-40"/>
         </scene>
         <!--Perfil-->
         <scene sceneID="IJO-k7-fU3">

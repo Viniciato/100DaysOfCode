@@ -9,7 +9,16 @@
 import UIKit
 
 class EventCell: UITableViewCell {
-
+    // MAKR : - Properties
+    var event : Event!
+    
+    // MARK : - Outlets
+    @IBOutlet weak var eventImageView: UIImageView!
+    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    
+    // MARK : - Cell Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +29,15 @@ class EventCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    // MARK : - Cell Methods
+    func setupCell() {
+        self.eventImageView.image = self.event.image
+        self.eventDescriptionLabel.text = self.event.description
+        self.eventLocationLabel.text = self.event.location
+        self.eventTitleLabel.text = self.event.title
+    }
+    
+    // MARK : - Cell Actions
     
 }

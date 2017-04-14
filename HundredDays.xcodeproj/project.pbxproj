@@ -29,6 +29,7 @@
 		D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543727E1E970F290034D771 /* LaunchScreen.storyboard */; };
 		D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */; };
 		D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56EEC971E9817690026EB5E /* HomeViewController.swift */; };
+		D5C7A42D1EA0353000F24BB4 /* ShowEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		D54372811E970F290034D771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D56EEC971E9817690026EB5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowEventController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				D509824F1E9AF9BC005C64AE /* ProfileController.swift */,
 				D50982531E9B02BD005C64AE /* EditProfileController.swift */,
 				D54372771E970F290034D771 /* LoginController.swift */,
+				D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				D509824A1E9962C5005C64AE /* SimpleAlert.swift in Sources */,
 				D50982541E9B02BD005C64AE /* EditProfileController.swift in Sources */,
 				D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */,
+				D5C7A42D1EA0353000F24BB4 /* ShowEventController.swift in Sources */,
 				D509825D1E9F4CE3005C64AE /* EventCell.swift in Sources */,
 				D50982461E98A4D4005C64AE /* RegisterController.swift in Sources */,
 				D54372781E970F290034D771 /* LoginController.swift in Sources */,
