@@ -17,25 +17,46 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var eventLocationLabel: UILabel!
     @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventDescriptionView: UIView!
+    @IBOutlet weak var eventDateView: UIView!
+    @IBOutlet weak var monthSymbolLabel: UILabel!
+    @IBOutlet weak var eventDayLabel: UILabel!
+    @IBOutlet weak var eventScheduleLabel: UILabel!
     
     // MARK : - Cell Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.setupBorderOnViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     // MARK : - Cell Methods
+    func setupBorderOnViews() {
+        let views = [self.eventDescriptionView, self.eventDateView]
+        for view in views {
+            view?.layer.borderWidth = 1
+            view?.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
+        }
+    }
+    
     func setupCell() {
         self.eventImageView.image = self.event.image
         self.eventDescriptionLabel.text = self.event.description
         self.eventLocationLabel.text = self.event.location
         self.eventTitleLabel.text = self.event.title
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: self.event.date!)
+        let day = calendar.component(.day, from: self.event.date!)
+        let hour = calendar.component(.hour, from: self.event.date!)
+        let dateFormatter: DateFormatter = DateFormatter()
+        let months = dateFormatter.shortMonthSymbols
+        let monthSymbol = months![month-1] // month - from your date components
+        self.monthSymbolLabel.text = monthSymbol
+        self.eventDayLabel.text = "\(day)"
+        self.eventScheduleLabel.text = "\(hour)h00"
     }
     
     // MARK : - Cell Actions

@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK : - Properties
     var events : [Event]!
     var databaseReference : FIRDatabaseReference!
+    var refresher : UIRefreshControl!
     
     // MARK : - Outlets
     @IBOutlet weak var eventsTableView: UITableView!
@@ -20,10 +21,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.events = [Event]()
         self.eventsTableView.dataSource = self
         self.eventsTableView.delegate = self
         self.databaseReference = DatabaseReference.getDatabaseRef()
-        self.events = [Event]()
+        self.setPullToRefresh()
+        self.refresher.beginRefreshing()
         self.loadEvents()
     }
     
@@ -32,10 +35,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK : - View Methods
+    func setPullToRefresh(){
+        self.refresher = UIRefreshControl()
+        self.refresher.addTarget(self, action: #selector(HomeViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
+        self.eventsTableView.addSubview(self.refresher)
+    }
+    
+    func pullRefreshSelector() {
+        self.loadEvents()
+    }
+    
     func loadEvents() {
         self.databaseReference.child("events").observeSingleEvent(of: .value, with: { (snapShot) in
             let eventGroup = DispatchGroup()
             if let dictionary = snapShot.value as? [String : [String : Any]]{
+                self.events.removeAll()
                 for dic in dictionary {
                     eventGroup.enter()
                     let userID = (dic.value["userID"] as! String)
@@ -51,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 eventGroup.notify(queue: .main, execute: {
                     self.eventsTableView.reloadData()
+                    self.refresher.endRefreshing()
                 })
             }
         })
@@ -71,7 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("EventCell", owner: self, options: nil)?.first as! EventCell
-        let event = self.events[indexPath.row]
+        let event = self.events[indexPath.section]
         cell.event = event
         cell.setupCell()
         return cell
@@ -92,7 +107,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showEvent", sender: self)
+        let stor = UIStoryboard(name: "Main", bundle: nil)
+        let vc = stor.instantiateViewController(withIdentifier: "ShowEventController") as! ShowEventController
+        vc.event = self.events[indexPath.section]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     
