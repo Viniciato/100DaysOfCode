@@ -6,6 +6,7 @@ GoogleService-Info.plist
 ## Build generated
 build/
 DerivedData/
+HundredDays/Variables.swift
 
 ## Various settings
 *.pbxuser

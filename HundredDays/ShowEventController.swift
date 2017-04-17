@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class ShowEventController: UIViewController {
     // MARK : - Properties
     var event : Event!
+    var googleMapsView : GMSMapView!
     
     // MARK : - Outlets
     @IBOutlet weak var eventImageView: UIImageView!
@@ -19,6 +21,7 @@ class ShowEventController: UIViewController {
     @IBOutlet weak var eventDayLabel: UILabel!
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var mapView: UIView!
     
     
     // MARK : - View Life Cycle
@@ -27,6 +30,13 @@ class ShowEventController: UIViewController {
         self.navigationItem.title = self.event.title
         self.setupViewComponents()
         self.setupViewBorder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
+        self.mapView.addSubview(self.googleMapsView)
+        print(self.googleMapsView.frame)
+        print(self.mapView.frame)
     }
     
     override func didReceiveMemoryWarning() {
