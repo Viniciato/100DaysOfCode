@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import Firebase
 import GoogleMaps
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK : - Properties
     var events : [Event]!
-    var databaseReference : FIRDatabaseReference!
     var refresher : UIRefreshControl!
     
     // MARK : - Outlets
@@ -25,9 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.events = [Event]()
         self.eventsTableView.dataSource = self
         self.eventsTableView.delegate = self
-        self.databaseReference = DatabaseReference.getDatabaseRef()
         self.setPullToRefresh()
-        self.refresher.beginRefreshing()
         self.loadEvents()
     }
     
@@ -47,41 +43,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadEvents() {
-        self.databaseReference.child("events").observeSingleEvent(of: .value, with: { (snapShot) in
-            let eventGroup = DispatchGroup()
-            if let dictionary = snapShot.value as? [String : [String : Any]]{
-                self.events.removeAll()
-                for dic in dictionary {
-                    eventGroup.enter()
-                    let userID = (dic.value["userID"] as! String)
-                    let title = (dic.value["title"] as! String)
-                    let date = (dic.value["date"] as! Int)
-                    let description = (dic.value["description"] as! String)
-                    let image = (dic.value["image"] as! String)
-                    var eventCoordinate = CLLocationCoordinate2D()
-                    if let location = (dic.value["location"] as? [String : CLLocationDegrees]){
-                        var locationValues = [CLLocationDegrees]()
-                        print(location)
-                        for value in location {
-                            locationValues.append(value.value)
-                        }
-                        eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
-                    }
-                    let locationName = (dic.value["locationName"] as! String)
-                    let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
-                    event.image = UIImage(named: "\(image)")
-                    self.events.append(event)
-                    eventGroup.leave()
-                }
-                eventGroup.notify(queue: .main, execute: {
-                    self.eventsTableView.reloadData()
-                    self.refresher.endRefreshing()
-                })
-            }
-            else {
-                self.refresher.endRefreshing()
-            }
-        })
+        self.refresher.beginRefreshing()
+        Event.findAll { (events) in
+            self.events = events
+            self.eventsTableView.reloadData()
+            self.refresher.endRefreshing()
+        }
     }
     
     // MARK : - View Actions

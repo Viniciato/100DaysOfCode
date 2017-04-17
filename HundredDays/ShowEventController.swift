@@ -35,7 +35,6 @@ class ShowEventController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
         let position = self.event.coordinate
-        print(position)
         let camera = GMSCameraPosition.camera(withLatitude: (position?.latitude)!, longitude: (position?.longitude)!, zoom: 18)
         self.googleMapsView.camera = camera
         let marker = GMSMarker(position: position!)

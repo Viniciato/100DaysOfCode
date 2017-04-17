@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Firebase
 import GooglePlaces
 import GoogleMaps
+import Firebase
 
 class NewEventController: UIViewController {
     // MARK : - Properties
-    var databaseReference : FIRDatabaseReference!
     var event : Event!
     var eventLocation : CLLocationCoordinate2D!
     var eventLocationName : String!
@@ -32,7 +31,6 @@ class NewEventController: UIViewController {
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.databaseReference = DatabaseReference.getDatabaseRef()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,22 +69,11 @@ class NewEventController: UIViewController {
     }
     
     func saveEventOnDatabase() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let eventsReference = self.databaseReference.child("events").childByAutoId()
-        let values = ["userID" : self.event.creatorID!, "title" : self.event.title!, "date" : Int((self.event.date?.timeIntervalSince1970)!), "description" : self.event.description!, "image" : "party.jpg", "locationName" : self.eventLocationName] as [String : Any]
-        eventsReference.updateChildValues(values) { (error, reference) in
+        Event.create(event: self.event, eventLocation: self.eventLocation) { (error) in
             if error != nil {
-                print(error!)
+                SimpleAlert.showAlert(vc: self, title: "Error", message: "\(error)")
                 return
             }
-            let eventLocationReference = eventsReference.child("location")
-            let locationValue = ["latitude" : self.eventLocation.latitude, "longitude" : self.eventLocation.longitude] as [String : CLLocationDegrees]
-            eventLocationReference.updateChildValues(locationValue, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err!)
-                    return
-                }
-            })
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.backToParent()
         }
