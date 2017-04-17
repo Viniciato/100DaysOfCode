@@ -72,7 +72,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             }
             
             let userReference = self.databaseReference.child("users").child(uid)
-            let values = ["name":name, "email":email, "profileImage":"fb-art"]
+            let values = ["name":name.lowercased(), "email":email, "profileImage":"fb-art"]
             userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if err != nil {
                     SimpleAlert.showAlert(vc: self, title: "Error", message: err! as! String)
