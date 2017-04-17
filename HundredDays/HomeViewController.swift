@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleMaps
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK : - Properties
@@ -54,11 +55,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     eventGroup.enter()
                     let userID = (dic.value["userID"] as! String)
                     let title = (dic.value["title"] as! String)
-                    let location = (dic.value["location"] as! String)
                     let date = (dic.value["date"] as! Int)
                     let description = (dic.value["description"] as! String)
                     let image = (dic.value["image"] as! String)
-                    let event = Event(creatorID: userID, title: title, location: location, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description)
+                    var eventCoordinate = CLLocationCoordinate2D()
+                    if let location = (dic.value["location"] as? [String : CLLocationDegrees]){
+                        var locationValues = [CLLocationDegrees]()
+                        print(location)
+                        for value in location {
+                            locationValues.append(value.value)
+                        }
+                        eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+                    }
+                    let locationName = (dic.value["locationName"] as! String)
+                    let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
                     event.image = UIImage(named: "\(image)")
                     self.events.append(event)
                     eventGroup.leave()
@@ -67,6 +77,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.eventsTableView.reloadData()
                     self.refresher.endRefreshing()
                 })
+            }
+            else {
+                self.refresher.endRefreshing()
             }
         })
     }

@@ -45,7 +45,7 @@ class EventCell: UITableViewCell {
     func setupCell() {
         self.eventImageView.image = self.event.image
         self.eventDescriptionLabel.text = self.event.description
-        self.eventLocationLabel.text = self.event.location
+        self.eventLocationLabel.text = self.event.locationName
         self.eventTitleLabel.text = self.event.title
         let calendar = Calendar.current
         let month = calendar.component(.month, from: self.event.date!)

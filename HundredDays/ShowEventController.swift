@@ -34,9 +34,15 @@ class ShowEventController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
+        let position = self.event.coordinate
+        print(position)
+        let camera = GMSCameraPosition.camera(withLatitude: (position?.latitude)!, longitude: (position?.longitude)!, zoom: 18)
+        self.googleMapsView.camera = camera
+        let marker = GMSMarker(position: position!)
+        marker.title = event.locationName
+        marker.map = self.googleMapsView
+
         self.mapView.addSubview(self.googleMapsView)
-        print(self.googleMapsView.frame)
-        print(self.mapView.frame)
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +59,7 @@ class ShowEventController: UIViewController {
         let months = dateFormatter.shortMonthSymbols
         let monthSymbol = months![month-1]
         self.eventImageView.image = self.event.image
-        self.eventLocationLabel.text = self.event.location
+        self.eventLocationLabel.text = self.event.locationName
         self.eventMonthLabel.text = monthSymbol
         self.eventDayLabel.text = "\(day)"
     }

@@ -8,24 +8,38 @@
 
 import UIKit
 import Firebase
+import GooglePlaces
+import GoogleMaps
 
 class NewEventController: UIViewController {
     // MARK : - Properties
     var databaseReference : FIRDatabaseReference!
     var event : Event!
+    var eventLocation : CLLocationCoordinate2D!
+    var eventLocationName : String!
+    var googleMapsView : GMSMapView!
     
     // MARK : - Outlets
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var eventDatePicker: UIDatePicker!
-    @IBOutlet weak var eventLocationTextField: UITextField!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var eventLocationButton: UIButton!
+    @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var mapView: UIView!
     
     
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.databaseReference = DatabaseReference.getDatabaseRef()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.googleMapsView == nil {
+            self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
+            self.mapView.addSubview(self.googleMapsView)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,7 +49,7 @@ class NewEventController: UIViewController {
     // MARK : - View Methods
     func verifyFields() -> Bool{
         if !(self.eventTitleTextField.text?.isEmpty)! {
-            if !(self.eventLocationTextField.text?.isEmpty)! {
+            if !(self.eventLocation == nil) {
                 if !(self.eventDescriptionTextView.text.isEmpty){
                     return true
                 }
@@ -47,10 +61,11 @@ class NewEventController: UIViewController {
     func createEvent() {
         let userID = FIRAuth.auth()?.currentUser?.uid
         let title = self.eventTitleTextField.text
-        let location = self.eventLocationTextField.text
+        let coordinate = self.eventLocation
         let date = self.eventDatePicker.date
         let description = self.eventDescriptionTextView.text
-        self.event = Event(creatorID: userID!, title: title!, location: location!, date: date, description: description!)
+        let locationName = self.eventLocationName
+        self.event = Event(creatorID: userID!, title: title!, coordinate: coordinate!, date: date, description: description!, locationName: locationName!)
         self.event.image = UIImage(named: "party.jpg")
         self.saveEventOnDatabase()
     }
@@ -58,12 +73,20 @@ class NewEventController: UIViewController {
     func saveEventOnDatabase() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let eventsReference = self.databaseReference.child("events").childByAutoId()
-        let values = ["userID" : self.event.creatorID!, "title" : self.event.title!, "location" : self.event.location!, "date" : Int((self.event.date?.timeIntervalSince1970)!), "description" : self.event.description!, "image" : "party.jpg"] as [String : Any]
+        let values = ["userID" : self.event.creatorID!, "title" : self.event.title!, "date" : Int((self.event.date?.timeIntervalSince1970)!), "description" : self.event.description!, "image" : "party.jpg", "locationName" : self.eventLocationName] as [String : Any]
         eventsReference.updateChildValues(values) { (error, reference) in
             if error != nil {
                 print(error!)
                 return
             }
+            let eventLocationReference = eventsReference.child("location")
+            let locationValue = ["latitude" : self.eventLocation.latitude, "longitude" : self.eventLocation.longitude] as [String : CLLocationDegrees]
+            eventLocationReference.updateChildValues(locationValue, withCompletionBlock: { (err, ref) in
+                if err != nil {
+                    print(err!)
+                    return
+                }
+            })
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             self.backToParent()
         }
@@ -85,33 +108,46 @@ class NewEventController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func searchAddress(_ sender: UIButton) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
 }
 
+extension NewEventController: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        self.eventLocationLabel.text = place.name
+        let position = place.coordinate
+        let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 18)
+        self.googleMapsView.camera = camera
+        let marker = GMSMarker(position: position)
+        marker.title = place.name
+        marker.map = self.googleMapsView
+        self.eventLocation = position
+        self.eventLocationName = place.formattedAddress
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+}
