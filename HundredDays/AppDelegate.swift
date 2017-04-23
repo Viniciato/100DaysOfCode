@@ -23,11 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSPlacesClient.provideAPIKey(GooglePlacesKey)
         FIRApp.configure()
         if FIRAuth.auth()?.currentUser != nil{
+            User.sharedInstance.loadUserInfos(completion: {})
             let stor = UIStoryboard(name: "Main", bundle: nil)
             let vc = stor.instantiateViewController(withIdentifier: "TabBarInitial")
             self.window?.rootViewController = vc
+            return true
+        } else {
+            return true
         }
-        return true
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

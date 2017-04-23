@@ -39,7 +39,11 @@ class EventCell: UITableViewCell {
         for view in views {
             view?.layer.borderWidth = 1
             view?.layer.borderColor = UIColor(red: 209/255, green: 209/255, blue: 209/255, alpha: 1).cgColor
+            view?.layer.cornerRadius = 2.5
         }
+        self.eventImageView.layer.cornerRadius = 2.5
+        self.eventImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.eventImageView.clipsToBounds = true
     }
     
     func setupCell() {

@@ -21,7 +21,7 @@ class LoginPageController: UIPageViewController, UIPageViewControllerDataSource 
         super.viewDidLoad()
         self.dataSource = self
         self.setFirstView()
-        self.view.backgroundColor = UIColor(red: 244.0, green: 247.0, blue: 250.0, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 245.0/255, green: 248.0/255, blue: 250.0/255, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {

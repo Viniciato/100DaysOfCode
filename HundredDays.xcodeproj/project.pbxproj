@@ -13,7 +13,6 @@
 		D509824A1E9962C5005C64AE /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982491E9962C5005C64AE /* SimpleAlert.swift */; };
 		D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509824B1E9974A0005C64AE /* DatabaseReference.swift */; };
 		D509824E1E997D76005C64AE /* fb-art.png in Resources */ = {isa = PBXBuildFile; fileRef = D509824D1E997D76005C64AE /* fb-art.png */; };
-		D50982501E9AF9BC005C64AE /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509824F1E9AF9BC005C64AE /* ProfileController.swift */; };
 		D50982521E9AFACE005C64AE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982511E9AFACE005C64AE /* User.swift */; };
 		D50982541E9B02BD005C64AE /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982531E9B02BD005C64AE /* EditProfileController.swift */; };
 		D509825A1E9ED179005C64AE /* ScreenChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50982591E9ED179005C64AE /* ScreenChange.swift */; };
@@ -46,7 +45,6 @@
 		D50982491E9962C5005C64AE /* SimpleAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
 		D509824B1E9974A0005C64AE /* DatabaseReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseReference.swift; sourceTree = "<group>"; };
 		D509824D1E997D76005C64AE /* fb-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb-art.png"; sourceTree = "<group>"; };
-		D509824F1E9AF9BC005C64AE /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		D50982511E9AFACE005C64AE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D50982531E9B02BD005C64AE /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		D50982591E9ED179005C64AE /* ScreenChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenChange.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				D50982451E98A4D4005C64AE /* RegisterController.swift */,
 				D50982611E9F5960005C64AE /* NewEventController.swift */,
 				D50982471E98A72B005C64AE /* LoginPageController.swift */,
-				D509824F1E9AF9BC005C64AE /* ProfileController.swift */,
 				D50982531E9B02BD005C64AE /* EditProfileController.swift */,
 				D54372771E970F290034D771 /* LoginController.swift */,
 				D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */,
@@ -333,7 +330,6 @@
 				D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */,
 				D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */,
 				D50982641E9F5C2C005C64AE /* Event.swift in Sources */,
-				D50982501E9AF9BC005C64AE /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
