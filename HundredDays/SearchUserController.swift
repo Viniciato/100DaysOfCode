@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     // MARK : - Properties
     var users : [UserProfile]!
     override var canBecomeFirstResponder: Bool {
@@ -18,6 +18,7 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK : - Outlets
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet weak var searchUserTextField: UITextField!
     
     
     // MARK : - View Life Cycle
@@ -26,6 +27,7 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         self.users = [UserProfile]()
         self.usersTableView.delegate = self
         self.usersTableView.dataSource = self
+        self.searchUserTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,8 +92,11 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         return 49
     }
     
-    
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.searchUser(UIButton())
+        return true
+    }
     
     
     

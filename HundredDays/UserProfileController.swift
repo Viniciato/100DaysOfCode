@@ -31,34 +31,46 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         self.databaseReference = DatabaseReference.getDatabaseRef()
         if self.user == nil {
-            self.user = UserProfile(userID: User.sharedInstance.userID!, email: User.sharedInstance.email!, name: User.sharedInstance.name!, profileImageUrl: User.sharedInstance.profileImageUrl!)
-            if self.user.profileImage == nil {
-                DispatchQueue.global().async {
-                    URLSession.shared.dataTask(with: URL(string: self.user.profileImageUrl!)!, completionHandler: { (data, response, error) in
-                        if error != nil {
-                            print(error!)
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            let image = UIImage(data: data!)
-                            self.user.profileImage = image
-                            self.userProfileImageView.image = image
-                        }
-                    }).resume()
-                }
+            if User.sharedInstance.name == nil {
+                NotificationCenter.default.addObserver(self, selector: #selector(UserProfileController.refreshUser), name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
+            }else{
+                self.refreshUser()
             }
+        } else {
+            self.setupUserInfos()
+            self.setupOutlets()
         }
-        self.setupUserInfos()
         self.events = [Event]()
         self.userEventsTableView.delegate = self
         self.userEventsTableView.dataSource = self
-        self.setupOutlets()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     // MARK : - View Methods
+    
+    func refreshUser(){
+        self.user = UserProfile(userID: User.sharedInstance.userID!, email: User.sharedInstance.email!, name: User.sharedInstance.name!, profileImageUrl: User.sharedInstance.profileImageUrl!)
+        if self.user.profileImage == nil {
+            DispatchQueue.global().async {
+                URLSession.shared.dataTask(with: URL(string: self.user.profileImageUrl!)!, completionHandler: { (data, response, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: data!)
+                        self.user.profileImage = image
+                        self.userProfileImageView.image = image
+                        User.sharedInstance.profileImage = image
+                    }
+                }).resume()
+            }
+        }
+        self.setupUserInfos()
+        self.setupOutlets()
+    }
     
     func setupUserInfos() {
         if self.user.userID == User.sharedInstance.userID{
@@ -101,6 +113,18 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
             self.navigationController?.pushViewController(editProfileViewController, animated: true)
         }
     }
+    
+    @IBAction func logoutAction(_ sender: UIButton) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            User.sharedInstance.setAttributes(id: "", email: "", name: "", url: "")
+            User.sharedInstance.profileImage = nil
+            ScreenChange.toScreen(bundle: "Main", controllerIndetifier: "LoginPageController")
+        } catch {
+            SimpleAlert.showAlert(vc: self, title: "Error", message: "Error on logout!")
+        }
+    }
+    
     
     // MARK : - Methods override by TableView DataSource
     

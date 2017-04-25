@@ -239,7 +239,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb-art.png" translatesAutoresizingMaskIntoConstraints="NO" id="eCj-Cx-wRW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eCj-Cx-wRW">
                                 <rect key="frame" x="8" y="72" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="bAF-he-F0Y"/>
@@ -451,7 +451,20 @@
                             <constraint firstItem="Sos-7u-kFR" firstAttribute="top" secondItem="Siq-DV-VvK" secondAttribute="bottom" id="zvO-kH-x8a"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3aI-2V-C7f"/>
+                    <navigationItem key="navigationItem" id="3aI-2V-C7f">
+                        <barButtonItem key="rightBarButtonItem" id="QB0-8o-BM0">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GGq-Lv-B60">
+                                <rect key="frame" x="233" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sair">
+                                    <color key="titleColor" red="0.84721820222006905" green="0.40781933069229126" blue="0.40781933069229126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutAction:" destination="hJ9-zD-0JQ" eventType="touchUpInside" id="pOz-vJ-GXJ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="followButton" destination="XmL-Bm-xeA" id="7qn-9m-ytg"/>
                         <outlet property="followersButton" destination="0BS-KC-kwd" id="n1v-Xo-skh"/>
@@ -489,7 +502,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Adm" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-1r-nqU">
+                                                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-1r-nqU">
                                                     <rect key="frame" x="8" y="8" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="drx-QJ-FVN"/>
@@ -542,10 +555,10 @@
                             <rect key="frame" x="8" y="7" width="219" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Z4s-ZO-hZr">
+                        <barButtonItem key="rightBarButtonItem" id="Z4s-ZO-hZr">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BaJ-Jg-q4R">
                                 <rect key="frame" x="233" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -557,6 +570,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchUserTextField" destination="xdK-aU-8U0" id="Gcg-Pc-92D"/>
                         <outlet property="userNameTextField" destination="xdK-aU-8U0" id="IyE-Nm-g2X"/>
                         <outlet property="usersTableView" destination="GyI-Oi-FmK" id="CwU-7K-9dn"/>
                     </connections>
@@ -1075,7 +1089,7 @@
             </objects>
             <point key="canvasLocation" x="6294.375" y="62.5"/>
         </scene>
-        <!--Editar Perfil-->
+        <!--Editar perfil-->
         <scene sceneID="FRM-S9-aNM">
             <objects>
                 <viewController storyboardIdentifier="EditProfileController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J8n-ET-XDN" customClass="EditProfileController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
@@ -1105,7 +1119,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="42" id="fZf-5S-T8e"/>
                                                 </constraints>
-                                                <state key="normal" title="Alterar foto do perfil"/>
+                                                <state key="normal" title="Alterar foto do perfil">
+                                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="changeImageAction:" destination="J8n-ET-XDN" eventType="touchUpInside" id="tzf-X7-7js"/>
                                                 </connections>
@@ -1123,7 +1139,6 @@
                                                     <constraint firstAttribute="height" constant="25" id="5WX-3A-ijU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" red="0.14457883560000001" green="0.5574401202" blue="0.71311865480000003" alpha="0.52247431509999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Endereço de email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZoY-J1-aUK">
@@ -1148,7 +1163,6 @@
                                                     <constraint firstAttribute="height" constant="25" id="esu-5o-hE0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" red="0.14457883560000001" green="0.5574401202" blue="0.71311865480000003" alpha="0.52247431509999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome completo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JUe-sy-3r4">
@@ -1166,7 +1180,6 @@
                                                     <constraint firstAttribute="height" constant="25" id="BVW-8d-zAr"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" red="0.14457883560000001" green="0.5574401202" blue="0.71311865480000003" alpha="0.52247431509999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ef-3Y-YKh">
@@ -1178,13 +1191,13 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ft-ha-Bsy">
                                                 <rect key="frame" x="57" y="419" width="206" height="30"/>
-                                                <color key="backgroundColor" red="0.14457883560000001" green="0.5574401202" blue="0.71311865480000003" alpha="0.52247431509999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="mak-Vf-FTH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Solicitar Alteração">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                <state key="normal" title="Solicitar alteração">
+                                                    <color key="titleColor" red="0.29461782110000001" green="0.60012822543333333" blue="0.37599313779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="changePassword:" destination="J8n-ET-XDN" eventType="touchUpInside" id="Spx-mn-y6N"/>
@@ -1192,7 +1205,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="fwT-XO-KzR" firstAttribute="top" secondItem="yhH-nK-b1c" secondAttribute="bottom" id="1ZS-TX-Hsp"/>
                                             <constraint firstItem="2Ef-3Y-YKh" firstAttribute="top" secondItem="SfV-m4-xaW" secondAttribute="bottom" constant="8" id="3XL-zZ-JwY"/>
@@ -1230,7 +1243,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="65d-3D-CCE" firstAttribute="leading" secondItem="D6y-w8-isS" secondAttribute="leading" id="aTg-1x-ycJ"/>
                                     <constraint firstItem="65d-3D-CCE" firstAttribute="top" secondItem="D6y-w8-isS" secondAttribute="top" id="cSi-IM-tJh"/>
@@ -1239,7 +1252,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.95686274510000002" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Bh1-RG-1as" firstAttribute="top" secondItem="D6y-w8-isS" secondAttribute="bottom" id="1uj-XY-8Hp"/>
                             <constraint firstItem="D6y-w8-isS" firstAttribute="leading" secondItem="at6-fG-H1k" secondAttribute="leading" id="XMj-yC-Agh"/>
@@ -1248,7 +1261,7 @@
                             <constraint firstAttribute="trailing" secondItem="D6y-w8-isS" secondAttribute="trailing" id="x5G-yD-cAK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Editar Perfil" id="ebk-NN-fUV">
+                    <navigationItem key="navigationItem" title="Editar perfil" id="ebk-NN-fUV">
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="1yf-ff-tAJ">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1266,6 +1279,7 @@
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="changeImageButton" destination="fwT-XO-KzR" id="V5s-aF-3aT"/>
+                        <outlet property="changePasswordButton" destination="9ft-ha-Bsy" id="z3k-9I-PXa"/>
                         <outlet property="emailTextField" destination="ZoY-J1-aUK" id="qH0-Ec-Wze"/>
                         <outlet property="nameTextField" destination="JUe-sy-3r4" id="kA3-de-rsl"/>
                         <outlet property="profileImageView" destination="yhH-nK-b1c" id="OHt-2j-Rcw"/>

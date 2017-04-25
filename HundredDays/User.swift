@@ -35,6 +35,7 @@ class User{
             let name = (value?["name"] as! String)
             let profileImageUrl = (value?["profileImage"] as! String)
             User.sharedInstance.setAttributes(id: id!, email: email, name: name, url : profileImageUrl)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
             completion()
         })
     }
