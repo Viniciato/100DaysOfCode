@@ -32,6 +32,21 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         self.databaseReference = DatabaseReference.getDatabaseRef()
         if self.user == nil {
             self.user = UserProfile(userID: User.sharedInstance.userID!, email: User.sharedInstance.email!, name: User.sharedInstance.name!, profileImageUrl: User.sharedInstance.profileImageUrl!)
+            if self.user.profileImage == nil {
+                DispatchQueue.global().async {
+                    URLSession.shared.dataTask(with: URL(string: self.user.profileImageUrl!)!, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            print(error!)
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            let image = UIImage(data: data!)
+                            self.user.profileImage = image
+                            self.userProfileImageView.image = image
+                        }
+                    }).resume()
+                }
+            }
         }
         self.setupUserInfos()
         self.events = [Event]()
@@ -63,7 +78,10 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         self.userProfileImageView.layer.cornerRadius = 30
         self.userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
         self.userProfileImageView.clipsToBounds = true
-        self.userProfileImageView.contentMode = .scaleAspectFit
+        self.userProfileImageView.contentMode = .scaleToFill
+        if self.isSelfProfile {
+            self.userProfileImageView.image = self.user.profileImage
+        }
         self.userProfileImageView.image = self.user.profileImage
     }
     

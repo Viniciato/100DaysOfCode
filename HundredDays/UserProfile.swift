@@ -75,9 +75,9 @@ class UserProfile : CustomStringConvertible{
                     let email = (value.value["email"] as! String)
                     let imageUrl = (value.value["profileImage"] as! String)
                     let user = UserProfile(userID: userID, email: email, name: name, profileImageUrl: imageUrl)
-                    if user.userID != User.sharedInstance.userID {
+//                    if user.userID != User.sharedInstance.userID {
                         arrayUsers.append(user)
-                    }
+//                    }
                     searchUserDispatch.leave()
                 }
                 searchUserDispatch.notify(queue: .main, execute: {

@@ -36,7 +36,7 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK : - View Actions
     @IBAction func searchUser(_ sender: UIButton) {
-        self.becomeFirstResponder()
+        self.resignFirstResponder()
         if !(self.userNameTextField.text?.isEmpty)! {
             UserProfile.searchUser(name: self.userNameTextField.text!) { (users) in
                 self.users = users
@@ -47,12 +47,30 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchUserCell")
-//        self.loadUserImage(user: users[indexPath.row])
+        let user = self.users[indexPath.row]
         let nameField = cell?.viewWithTag(1) as! UILabel
         let profileImage = cell?.viewWithTag(2) as! UIImageView
-        profileImage.image = UIImage()
-//        profileImage.image = users[indexPath.row].profileImage
-        nameField.text = users[indexPath.row].name
+        profileImage.layer.cornerRadius = 15
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.clipsToBounds = true
+        profileImage.contentMode = .scaleToFill
+        nameField.text = user.name
+        if user.profileImage == nil {
+            DispatchQueue.global().async {
+                let url = URL(string: user.profileImageUrl!)
+                URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    let image = UIImage(data: data!)
+                    self.users[indexPath.row].profileImage = image
+                    DispatchQueue.main.async {
+                        profileImage.image = image
+                    }
+                }.resume()
+            }
+        }
         return cell!
     }
     
@@ -68,29 +86,9 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    func loadUserImage(user : UserProfile) {
-        let profileImageGroup = DispatchGroup()
-        let profileUrl = URL(string: user.profileImageUrl!)
-        var image : UIImage!
-        URLSession.shared.dataTask(with: profileUrl!) { (data, response, error) in
-            if error != nil {
-                print(error as Any)
-                return
-            }
-            profileImageGroup.enter()
-            DispatchQueue.main.async {
-                image = UIImage(data: data!)
-                profileImageGroup.leave()
-            }
-            profileImageGroup.notify(queue: .main, execute: {
-                user.profileImage = image
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self.usersTableView.reloadData()
-            })
-            }.resume()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 49
     }
-    
-    
     
     
     
