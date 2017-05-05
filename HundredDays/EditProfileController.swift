@@ -46,9 +46,9 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func setFields() {
-        self.profileImageView.image = User.sharedInstance.profileImage
-        self.nameTextField.text = User.sharedInstance.name
-        self.emailTextField.text = User.sharedInstance.email
+        self.profileImageView.image = User.sharedInstance.user.profileImage
+        self.nameTextField.text = User.sharedInstance.user.name
+        self.emailTextField.text = User.sharedInstance.user.email
     }
     
     func setupProfileImageView() {
@@ -85,19 +85,19 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func saveNewName() {
-        if self.nameTextField.text != User.sharedInstance.name {
+        if self.nameTextField.text != User.sharedInstance.user.name {
             let updateName = ["name" : self.nameTextField.text as Any]
             let userId = FIRAuth.auth()?.currentUser?.uid
             let usersReference = self.databaseReference.child("users").child(userId!)
             usersReference.updateChildValues(updateName)
-            User.sharedInstance.name = self.nameTextField.text
+            User.sharedInstance.user.name = self.nameTextField.text
         }
     }
     
     func saveNewProfilePhoto() {
-        if self.profileImageView.image != User.sharedInstance.profileImage {
+        if self.profileImageView.image != User.sharedInstance.user.profileImage {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            User.sharedInstance.profileImage = self.profileImageView.image
+            User.sharedInstance.user.profileImage = self.profileImageView.image
             if let uploadData = UIImagePNGRepresentation(self.profileImageView.image!){
                 let imageName = NSUUID().uuidString
                 storageReference.child("profile_images").child("\(imageName).png").put(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -143,7 +143,7 @@ class EditProfileController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func changePassword(_ sender: UIButton) {
-        FIRAuth.auth()?.sendPasswordReset(withEmail: User.sharedInstance.email!) { error in
+        FIRAuth.auth()?.sendPasswordReset(withEmail: User.sharedInstance.user.email!) { error in
             if let error = error {
                 print(error)
             } else {

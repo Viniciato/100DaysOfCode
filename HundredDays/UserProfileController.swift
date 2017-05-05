@@ -15,6 +15,7 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     var events : [Event]!
     var databaseReference : FIRDatabaseReference!
     var isSelfProfile = false
+    var refresher : UIRefreshControl!
     
     // MARK : - Outlets
     @IBOutlet weak var userProfileImageView: UIImageView!
@@ -30,8 +31,9 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.databaseReference = DatabaseReference.getDatabaseRef()
+        self.setPullToRefresh()
         if self.user == nil {
-            if User.sharedInstance.name == nil {
+            if User.sharedInstance.user.name == nil {
                 NotificationCenter.default.addObserver(self, selector: #selector(UserProfileController.refreshUser), name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
             }else{
                 self.refreshUser()
@@ -49,9 +51,20 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
     }
     // MARK : - View Methods
+    func setPullToRefresh(){
+        self.refresher = UIRefreshControl()
+        self.refresher.addTarget(self, action: #selector(HomeViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
+        self.userEventsTableView.addSubview(self.refresher)
+    }
+    
+    func pullRefreshSelector() {
+        self.userEventsTableView.reloadData()
+        self.refresher.endRefreshing()
+    }
     
     func refreshUser(){
-        self.user = UserProfile(userID: User.sharedInstance.userID!, email: User.sharedInstance.email!, name: User.sharedInstance.name!, profileImageUrl: User.sharedInstance.profileImageUrl!)
+        NotificationCenter.default.removeObserver(self)
+        self.user = User.sharedInstance.user
         if self.user.profileImage == nil {
             DispatchQueue.global().async {
                 URLSession.shared.dataTask(with: URL(string: self.user.profileImageUrl!)!, completionHandler: { (data, response, error) in
@@ -63,7 +76,7 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
                         let image = UIImage(data: data!)
                         self.user.profileImage = image
                         self.userProfileImageView.image = image
-                        User.sharedInstance.profileImage = image
+                        User.sharedInstance.user.profileImage = image
                     }
                 }).resume()
             }
@@ -73,13 +86,18 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func setupUserInfos() {
-        if self.user.userID == User.sharedInstance.userID{
+        if self.user.userID == User.sharedInstance.user.userID{
             self.isSelfProfile = true
             self.followButton.setTitle("Editar perfil", for: .normal)
+        }
+        else{
+            self.setFollowButton()
         }
         self.userNameLabel.text = self.user.name?.capitalized
         self.navigationItem.title = self.user.name?.capitalized
         self.eventsOfUser()
+        self.followersButton.setTitle("\(self.user.followers.count)", for: .normal)
+        self.followingButton.setTitle("\(self.user.following.count)", for: .normal)
     }
     
     func setupOutlets() {
@@ -91,9 +109,6 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         self.userProfileImageView.translatesAutoresizingMaskIntoConstraints = false
         self.userProfileImageView.clipsToBounds = true
         self.userProfileImageView.contentMode = .scaleToFill
-        if self.isSelfProfile {
-            self.userProfileImageView.image = self.user.profileImage
-        }
         self.userProfileImageView.image = self.user.profileImage
     }
     
@@ -105,20 +120,30 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func setFollowButton(){
+            if self.user.isFollowingUser(){
+                self.followButton.setTitle("seguindo", for: .normal)
+            }else{
+                self.followButton.setTitle("seguir", for: .normal)
+            }
+    }
+    
     // MARK : - View Actions
     @IBAction func followUser(_ sender: UIButton) {
         if isSelfProfile {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let editProfileViewController = storyBoard.instantiateViewController(withIdentifier: "EditProfileController") as! EditProfileController
             self.navigationController?.pushViewController(editProfileViewController, animated: true)
+        } else{
+            self.user.followAction()
+            self.setFollowButton()
         }
     }
     
     @IBAction func logoutAction(_ sender: UIButton) {
         do {
             try FIRAuth.auth()?.signOut()
-            User.sharedInstance.setAttributes(id: "", email: "", name: "", url: "")
-            User.sharedInstance.profileImage = nil
+            User.sharedInstance.user = UserProfile()
             ScreenChange.toScreen(bundle: "Main", controllerIndetifier: "LoginPageController")
         } catch {
             SimpleAlert.showAlert(vc: self, title: "Error", message: "Error on logout!")

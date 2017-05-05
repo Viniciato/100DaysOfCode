@@ -20,7 +20,6 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var searchUserTextField: UITextField!
     
-    
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +33,6 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
     
-    // MARK : - View Methods
-    
     // MARK : - View Actions
     @IBAction func searchUser(_ sender: UIButton) {
         self.resignFirstResponder()
@@ -47,33 +44,14 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // MARK : - View Methods
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchUserCell")
+        let cell = Bundle.main.loadNibNamed("SearchUserCell", owner: self, options: nil)?.first as! SearchUserCell
         let user = self.users[indexPath.row]
-        let nameField = cell?.viewWithTag(1) as! UILabel
-        let profileImage = cell?.viewWithTag(2) as! UIImageView
-        profileImage.layer.cornerRadius = 15
-        profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.clipsToBounds = true
-        profileImage.contentMode = .scaleToFill
-        nameField.text = user.name
-        if user.profileImage == nil {
-            DispatchQueue.global().async {
-                let url = URL(string: user.profileImageUrl!)
-                URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                    if error != nil {
-                        print(error!)
-                        return
-                    }
-                    let image = UIImage(data: data!)
-                    self.users[indexPath.row].profileImage = image
-                    DispatchQueue.main.async {
-                        profileImage.image = image
-                    }
-                }.resume()
-            }
-        }
-        return cell!
+        cell.user = user
+        cell.setupCellLabels()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,12 +62,13 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         self.becomeFirstResponder()
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyBoard.instantiateViewController(withIdentifier: "userProfileController") as! UserProfileController
-        viewController.user = self.users[indexPath.row]
+        let cell = tableView.cellForRow(at: indexPath) as! SearchUserCell!
+        viewController.user = cell?.user
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 49
+        return 51
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -98,7 +77,9 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.usersTableView.reloadData()
+    }
     
     
     
