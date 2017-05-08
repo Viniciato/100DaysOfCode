@@ -21,6 +21,7 @@ class Event {
     var vacancies : Int?
     var categorie : String?
     var user : UserProfile!
+    var guests = [String]()
     
     init(creatorID : String, title : String, coordinate : CLLocationCoordinate2D, date : Date, description : String, locationName : String) {
         self.creatorID = creatorID
@@ -31,13 +32,16 @@ class Event {
         self.description = description
     }
     
+    init() {}
+    
     static func create(event : Event, eventLocation : CLLocationCoordinate2D, completion: @escaping (Error?) -> ()){
         let eventGroup = DispatchGroup()
         var errorReturn : Error?
         let databaseReference = DatabaseReference.getDatabaseRef()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let eventsReference = databaseReference.child("events").childByAutoId()
-        let values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!, "vacancies" : event.vacancies!, "categorie" : event.categorie!] as [String : Any]
+        let values : [String : Any]!
+        values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!, "vacancies" : event.vacancies!, "categorie" : event.categorie!] as [String : Any]
         eventsReference.updateChildValues(values) { (error, reference) in
             eventGroup.enter()
             if error != nil {
@@ -46,9 +50,11 @@ class Event {
                 eventGroup.leave()
                 return
             }
+            eventGroup.leave()
             let eventLocationReference = eventsReference.child("location")
             let locationValue = ["latitude" : eventLocation.latitude, "longitude" : eventLocation.longitude] as [String : CLLocationDegrees]
             eventLocationReference.updateChildValues(locationValue, withCompletionBlock: { (err, ref) in
+                eventGroup.enter()
                 if err != nil {
                     print(err!)
                     errorReturn = err
@@ -57,6 +63,23 @@ class Event {
                 }
                 eventGroup.leave()
             })
+            
+            let eventGuestsReference = eventsReference.child("guests")
+            for guest in event.guests {
+                let key = eventGuestsReference.childByAutoId().key
+                let guestValue = ["\(key)" : guest]
+                eventGuestsReference.updateChildValues(guestValue, withCompletionBlock: { (e, d) in
+                    eventGroup.enter()
+                    if e != nil {
+                        print(e!)
+                        errorReturn = e
+                        eventGroup.leave()
+                        return
+                    }
+                    eventGroup.leave()
+                })
+            }
+            
             eventGroup.notify(queue: .main, execute: {
                 completion(errorReturn)
             })

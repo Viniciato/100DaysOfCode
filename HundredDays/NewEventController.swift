@@ -13,12 +13,13 @@ import Firebase
 
 class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK : - Properties
-    var event : Event!
+    var event = Event()
     var eventLocation : CLLocationCoordinate2D!
     var eventLocationName : String!
     var googleMapsView : GMSMapView!
     var categorie : String!
     var categories = ["Festa","Show Beneficiente","Tecnologia","Palestra"]
+    var guests = [String]()
     
     // MARK : - Outlets
     @IBOutlet weak var eventImageView: UIImageView!
@@ -43,11 +44,14 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         self.setupGoogleMapsView()
+        print(self.event.guests)
+        self.guests = self.event.guests
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     // MARK : - View Methods
     func setupGoogleMapsView(){
@@ -86,9 +90,13 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             let date = self.eventDatePicker.date
             let description = self.eventDescriptionTextView.text
             let locationName = self.eventLocationName
-            let vacancies = self.eventVacanciesTextView.text
             self.event = Event(creatorID: userID!, title: title!, coordinate: coordinate!, date: date, description: description!, locationName: locationName!)
-            self.event.vacancies = Int(vacancies!)
+            self.event.vacancies = 0
+            if !self.eventPrivacySwitch.isOn {
+                let vacancies = self.eventVacanciesTextView.text
+                self.event.vacancies = Int(vacancies!)
+            }
+            self.event.guests = self.guests
             self.event.categorie = self.categorie
             self.event.image = UIImage(named: "party.jpg")
             self.saveEventOnDatabase()
@@ -153,6 +161,13 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         self.categorie = self.categories[row]
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "selectGuestsSegue") {
+            let destinationVc = segue.destination as! SelectGuestsController
+            destinationVc.user = User.sharedInstance.user
+            destinationVc.event = self.event
+        }
+    }
 }
 
 extension NewEventController: GMSAutocompleteViewControllerDelegate {

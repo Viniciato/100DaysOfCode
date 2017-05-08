@@ -44,6 +44,11 @@ class SearchUserController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @IBAction func clearSearchs(_ sender: UIBarButtonItem) {
+        self.users = [UserProfile]()
+        self.usersTableView.reloadData()
+    }
+    
     // MARK : - View Methods
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

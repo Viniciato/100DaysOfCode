@@ -507,8 +507,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="mr4-QX-Lbj">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Limpar" id="frw-cK-dcg">
+                            <connections>
+                                <action selector="clearSearchs:" destination="wyS-RE-ipU" id="xNf-lL-YjS"/>
+                            </connections>
+                        </barButtonItem>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do usuario" minimumFontSize="17" clearButtonMode="unlessEditing" id="xdK-aU-8U0">
-                            <rect key="frame" x="8" y="7" width="219" height="30"/>
+                            <rect key="frame" x="67" y="7" width="160" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1484,6 +1489,7 @@
                                                         <state key="normal" title="Selecionar Convidados"/>
                                                         <connections>
                                                             <action selector="selectGuestsAction:" destination="rU7-aq-AJy" eventType="touchUpInside" id="E0p-EA-kGQ"/>
+                                                            <segue destination="qbM-Kv-riK" kind="show" identifier="selectGuestsSegue" id="r8V-5D-PEx"/>
                                                         </connections>
                                                     </button>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gpu-TT-isH">
@@ -1596,6 +1602,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1RX-OV-SZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9828.75" y="-40"/>
+        </scene>
+        <!--Selecionar convidados-->
+        <scene sceneID="fQv-eQ-cv8">
+            <objects>
+                <tableViewController id="qbM-Kv-riK" customClass="SelectGuestsController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ImS-PP-R3b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="guestUsersCell" id="dBy-K7-HXu">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBy-K7-HXu" id="Urz-fE-iWO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qbM-Kv-riK" id="1A5-rt-cIA"/>
+                            <outlet property="delegate" destination="qbM-Kv-riK" id="EwQ-N9-CeD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Selecionar convidados" id="stc-pN-g1a">
+                        <barButtonItem key="rightBarButtonItem" title="Ok" id="x1R-pK-XKn">
+                            <connections>
+                                <action selector="finishGuestSelection:" destination="qbM-Kv-riK" id="q3c-l5-FhB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jcK-w8-QUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10766" y="-40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="351-BH-bjl">

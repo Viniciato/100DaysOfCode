@@ -32,6 +32,7 @@
 		D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543727E1E970F290034D771 /* LaunchScreen.storyboard */; };
 		D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */; };
 		D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56EEC971E9817690026EB5E /* HomeViewController.swift */; };
+		D58D84851EC012C4001F712B /* SelectGuestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D84841EC012C4001F712B /* SelectGuestsController.swift */; };
 		D59083321EBCB09E003050A1 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59083311EBCB09E003050A1 /* UserKeys.swift */; };
 		D595AF161EB119F4005A176B /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D595AF141EB119F4005A176B /* SearchUserCell.swift */; };
 		D595AF171EB119F4005A176B /* SearchUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D595AF151EB119F4005A176B /* SearchUserCell.xib */; };
@@ -69,6 +70,7 @@
 		D54372811E970F290034D771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D56EEC971E9817690026EB5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D58D84841EC012C4001F712B /* SelectGuestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGuestsController.swift; sourceTree = "<group>"; };
 		D59083311EBCB09E003050A1 /* UserKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
 		D595AF141EB119F4005A176B /* SearchUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		D595AF151EB119F4005A176B /* SearchUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserCell.xib; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */,
 				D523A5651EA55FF600C90FEB /* SearchUserController.swift */,
 				D523A56B1EA57C9D00C90FEB /* UserProfileController.swift */,
+				D58D84841EC012C4001F712B /* SelectGuestsController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */,
 				D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */,
 				D50982641E9F5C2C005C64AE /* Event.swift in Sources */,
+				D58D84851EC012C4001F712B /* SelectGuestsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
