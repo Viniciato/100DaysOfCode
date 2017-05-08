@@ -11,12 +11,14 @@ import GooglePlaces
 import GoogleMaps
 import Firebase
 
-class NewEventController: UIViewController {
+class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     // MARK : - Properties
     var event : Event!
     var eventLocation : CLLocationCoordinate2D!
     var eventLocationName : String!
     var googleMapsView : GMSMapView!
+    var categorie : String!
+    var categories = ["Festa","Show Beneficiente","Tecnologia","Palestra"]
     
     // MARK : - Outlets
     @IBOutlet weak var eventImageView: UIImageView!
@@ -25,19 +27,22 @@ class NewEventController: UIViewController {
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     @IBOutlet weak var eventLocationButton: UIButton!
     @IBOutlet weak var eventLocationLabel: UILabel!
+    @IBOutlet weak var eventVacanciesTextView: UITextField!
+    @IBOutlet weak var eventCategoryPicker: UIPickerView!
+    @IBOutlet weak var eventPrivacySwitch: UISwitch!
+    @IBOutlet weak var selectGuestsButton: UIButton!
     @IBOutlet weak var mapView: UIView!
     
     
     // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupEventCategoryPicker()
+        self.setupDescriptionTextView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if self.googleMapsView == nil {
-            self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
-            self.mapView.addSubview(self.googleMapsView)
-        }
+        self.setupGoogleMapsView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +50,23 @@ class NewEventController: UIViewController {
     }
     
     // MARK : - View Methods
+    func setupGoogleMapsView(){
+        if self.googleMapsView == nil {
+            self.googleMapsView = GMSMapView(frame: CGRect(x: 0, y: 0, width: self.mapView.frame.width, height: self.mapView.frame.height))
+            self.mapView.addSubview(self.googleMapsView)
+        }
+    }
+    
+    func setupEventCategoryPicker(){
+        self.eventCategoryPicker.dataSource = self
+        self.eventCategoryPicker.delegate = self
+    }
+    
+    func setupDescriptionTextView() {
+        self.eventDescriptionTextView.layer.borderWidth = 0.5
+        self.eventDescriptionTextView.layer.borderColor = UIColor.black.cgColor
+    }
+    
     func verifyFields() -> Bool{
         if !(self.eventTitleTextField.text?.isEmpty)! {
             if !(self.eventLocation == nil) {
@@ -57,15 +79,20 @@ class NewEventController: UIViewController {
     }
     
     func createEvent() {
-        let userID = FIRAuth.auth()?.currentUser?.uid
-        let title = self.eventTitleTextField.text
-        let coordinate = self.eventLocation
-        let date = self.eventDatePicker.date
-        let description = self.eventDescriptionTextView.text
-        let locationName = self.eventLocationName
-        self.event = Event(creatorID: userID!, title: title!, coordinate: coordinate!, date: date, description: description!, locationName: locationName!)
-        self.event.image = UIImage(named: "party.jpg")
-        self.saveEventOnDatabase()
+        if self.categorie != nil {
+            let userID = FIRAuth.auth()?.currentUser?.uid
+            let title = self.eventTitleTextField.text
+            let coordinate = self.eventLocation
+            let date = self.eventDatePicker.date
+            let description = self.eventDescriptionTextView.text
+            let locationName = self.eventLocationName
+            let vacancies = self.eventVacanciesTextView.text
+            self.event = Event(creatorID: userID!, title: title!, coordinate: coordinate!, date: date, description: description!, locationName: locationName!)
+            self.event.vacancies = Int(vacancies!)
+            self.event.categorie = self.categorie
+            self.event.image = UIImage(named: "party.jpg")
+            self.saveEventOnDatabase()
+        }
     }
     
     func saveEventOnDatabase() {
@@ -100,6 +127,32 @@ class NewEventController: UIViewController {
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
+    
+    @IBAction func selectGuestsAction(_ sender: UIButton) {
+        // Abrir view para selecionar os usuarios
+    }
+    
+    @IBAction func isPublicEventSwitch(_ sender: UISwitch) {
+        // Implementar funcionalidade de esconder os campos desnecessarios
+    }
+    
+    // MARK : - Methods override of UIPickerView
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.categorie = self.categories[row]
+    }
+    
 }
 
 extension NewEventController: GMSAutocompleteViewControllerDelegate {

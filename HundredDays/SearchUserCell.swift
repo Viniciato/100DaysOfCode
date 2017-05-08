@@ -40,7 +40,6 @@ class SearchUserCell: UITableViewCell {
     
     func refreshProfileImage() {
         NotificationCenter.default.removeObserver(self)
-        print("Refresssh")
         self.profileImageView.image = self.user.profileImage
     }
     

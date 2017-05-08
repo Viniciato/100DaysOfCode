@@ -28,25 +28,11 @@ class UserProfile : CustomStringConvertible{
         self.email = email
         self.name = name
         self.profileImageUrl = profileImageUrl
-        DispatchQueue.global().async {
-            let url = URL(string: self.profileImageUrl!)
-            URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                let image = UIImage(data: data!)
-                DispatchQueue.main.async {
-                    self.profileImage = image
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "imageLoaded\(self.userID)"), object: nil)
-                }
-            }.resume()
-        }
     }
     
     init() {}
     
-    func findById(id : String, completion: @escaping (UserProfile) -> ()) {
+    static func findById(id : String, completion: @escaping (UserProfile) -> ()) {
         let databaseReference = DatabaseReference.getDatabaseRef().child("users")
         var user : UserProfile!
         let userDispatch = DispatchGroup()
@@ -70,7 +56,6 @@ class UserProfile : CustomStringConvertible{
                     user.followers.append(userKeys)
                 }
             }
-            print(user.following.count)
             userDispatch.leave()
             userDispatch.notify(queue: .main, execute: {
                 completion(user)
@@ -109,6 +94,7 @@ class UserProfile : CustomStringConvertible{
                     let userID = (value.value["userID"] as! String)
                     let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
                     event.image = UIImage(named: "\(image)")
+                    event.user = self
                     events.append(event)
                     eventsDispatchGroup.leave()
                 }
@@ -119,6 +105,21 @@ class UserProfile : CustomStringConvertible{
                 completion(events)
             }
         })
+    }
+    
+    func downloadProfileImage(completion: @escaping (Bool) -> ()){
+        DispatchQueue.global().async {
+            let url = URL(string: self.profileImageUrl!)
+            URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                let image = UIImage(data: data!)
+                self.profileImage = image
+                completion(true)
+                }.resume()
+        }
     }
     
     static func searchUser(name : String, completion: @escaping ([UserProfile]) -> ()){

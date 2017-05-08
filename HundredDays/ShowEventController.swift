@@ -22,6 +22,10 @@ class ShowEventController: UIViewController {
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var eventCreatorImageView: UIImageView!
+    @IBOutlet weak var eventCreatorName: UILabel!
+    @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var eventVacanciesLabel: UILabel!
     
     
     // MARK : - View Life Cycle
@@ -30,6 +34,7 @@ class ShowEventController: UIViewController {
         self.navigationItem.title = self.event.title
         self.setupViewComponents()
         self.setupViewBorder()
+        self.setupProfileImageView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +45,6 @@ class ShowEventController: UIViewController {
         let marker = GMSMarker(position: position!)
         marker.title = event.locationName
         marker.map = self.googleMapsView
-
         self.mapView.addSubview(self.googleMapsView)
     }
     
@@ -51,6 +55,10 @@ class ShowEventController: UIViewController {
     // MARK : - View Methods
     
     func setupViewComponents() {
+        self.eventCreatorName.text = self.event.user.name?.capitalized
+        self.eventCreatorImageView.image = self.event.user.profileImage
+        self.eventDescriptionTextView.text = self.event.description
+        self.eventVacanciesLabel.text = "\(self.event.vacancies!)"
         let calendar = Calendar.current
         let month = calendar.component(.month, from: self.event.date!)
         let day = calendar.component(.day, from: self.event.date!)
@@ -71,9 +79,26 @@ class ShowEventController: UIViewController {
         }
     }
     
+    func setupProfileImageView(){
+        self.eventCreatorImageView.layer.cornerRadius = 30
+        self.eventCreatorImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.eventCreatorImageView.clipsToBounds = true
+        self.eventCreatorImageView.contentMode = .scaleToFill
+    }
+    
+    
     // MARK : - View Actions
     
+    @IBAction func showUserButton(_ sender: UIButton) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "userProfileController") as! UserProfileController
+        viewController.user = self.event.user
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
+    @IBAction func buyTicketsAction(_ sender: UIButton) {
+        print("Comprar")
+    }
     
     
     

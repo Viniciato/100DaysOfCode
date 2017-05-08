@@ -22,11 +22,14 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var monthSymbolLabel: UILabel!
     @IBOutlet weak var eventDayLabel: UILabel!
     @IBOutlet weak var eventScheduleLabel: UILabel!
+    @IBOutlet weak var eventCreatorLabel: UILabel!
+    @IBOutlet weak var eventCreatorImage: UIImageView!
     
     // MARK : - Cell Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setupBorderOnViews()
+        self.setupProfileImageView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -61,6 +64,29 @@ class EventCell: UITableViewCell {
         self.monthSymbolLabel.text = monthSymbol
         self.eventDayLabel.text = "\(day)"
         self.eventScheduleLabel.text = "\(hour)h00"
+        self.eventCreatorLabel.text = self.event.user.name?.capitalized
+        if self.event.user.profileImage == nil {
+            self.event.user.downloadProfileImage(completion: { (bool) in
+                if bool {
+                    self.refreshProfileImage()
+                }
+            })
+        } else {
+            self.refreshProfileImage()
+        }
+    }
+    
+    func refreshProfileImage() {
+        DispatchQueue.main.async {
+            self.eventCreatorImage.image = self.event.user.profileImage
+        }
+    }
+    
+    func setupProfileImageView(){
+        self.eventCreatorImage.layer.cornerRadius = 15
+        self.eventCreatorImage.translatesAutoresizingMaskIntoConstraints = false
+        self.eventCreatorImage.clipsToBounds = true
+        self.eventCreatorImage.contentMode = .scaleToFill
     }
     
     // MARK : - Cell Actions

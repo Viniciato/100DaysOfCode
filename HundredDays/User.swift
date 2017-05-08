@@ -17,8 +17,9 @@ class User{
     
     func loadUserInfos(completion: @escaping () -> ()) {
         let id = FIRAuth.auth()?.currentUser?.uid
-        self.user.findById(id: id!) { (user) in
+        UserProfile.findById(id: id!) { (user) in
             User.sharedInstance.user = user
+            User.sharedInstance.user.downloadProfileImage(completion: { (bool) in})
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userLoaded"), object: nil)
         }
     }

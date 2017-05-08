@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -129,14 +129,14 @@
                             <constraint firstItem="mck-QP-hea" firstAttribute="leading" secondItem="WBy-ZO-jtj" secondAttribute="leading" id="k43-hw-zgh"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb-art.png" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-5C-CHO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-5C-CHO">
                         <rect key="frame" x="8" y="4" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="2Az-lQ-1I3"/>
                             <constraint firstAttribute="width" constant="32" id="2ka-04-gL4"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUV Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHt-kn-EuY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHt-kn-EuY">
                         <rect key="frame" x="48" y="9" width="264" height="22"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <nil key="textColor"/>
@@ -167,6 +167,8 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="eventCreatorImage" destination="uk2-5C-CHO" id="YPZ-xh-nYd"/>
+                <outlet property="eventCreatorLabel" destination="nHt-kn-EuY" id="fn6-q0-fCw"/>
                 <outlet property="eventDateView" destination="0yT-45-Cf7" id="4vw-pk-6qC"/>
                 <outlet property="eventDayLabel" destination="kg1-R3-6oJ" id="Pav-Mx-pHR"/>
                 <outlet property="eventDescriptionLabel" destination="fAV-VW-VMU" id="ebi-tI-e7x"/>
@@ -181,7 +183,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="fb-art.png" width="250" height="250"/>
         <image name="party.jpg" width="2048" height="1536"/>
     </resources>
 </document>

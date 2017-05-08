@@ -18,6 +18,9 @@ class Event {
     var date : Date?
     var image : UIImage?
     var description : String?
+    var vacancies : Int?
+    var categorie : String?
+    var user : UserProfile!
     
     init(creatorID : String, title : String, coordinate : CLLocationCoordinate2D, date : Date, description : String, locationName : String) {
         self.creatorID = creatorID
@@ -34,7 +37,7 @@ class Event {
         let databaseReference = DatabaseReference.getDatabaseRef()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let eventsReference = databaseReference.child("events").childByAutoId()
-        let values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!] as [String : Any]
+        let values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!, "vacancies" : event.vacancies!, "categorie" : event.categorie!] as [String : Any]
         eventsReference.updateChildValues(values) { (error, reference) in
             eventGroup.enter()
             if error != nil {
@@ -74,6 +77,8 @@ class Event {
                     let date = (dic.value["date"] as! Int)
                     let description = (dic.value["description"] as! String)
                     let image = (dic.value["image"] as! String)
+                    let categorie = (dic.value["categorie"] as! String)
+                    let vacancies = (dic.value["vacancies"] as! Int)
                     var eventCoordinate = CLLocationCoordinate2D()
                     if let location = (dic.value["location"] as? [String : CLLocationDegrees]){
                         var locationValues = [CLLocationDegrees]()
@@ -84,9 +89,14 @@ class Event {
                     }
                     let locationName = (dic.value["locationName"] as! String)
                     let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
+                    event.vacancies = vacancies
+                    event.categorie = categorie
                     event.image = UIImage(named: "\(image)")
-                    events.append(event)
-                    eventGroup.leave()
+                    UserProfile.findById(id: userID, completion: { (user) in
+                        event.user = user
+                        events.append(event)
+                        eventGroup.leave()
+                    })
                 }
                 eventGroup.notify(queue: .main, execute: {
                     completion(events)
