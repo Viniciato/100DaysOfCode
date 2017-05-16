@@ -19,7 +19,7 @@ class Event {
     var image : UIImage?
     var description : String?
     var vacancies : Int?
-    var categorie : String?
+    var categorie : EventCategorie?
     var user : UserProfile!
     var guests = [String]()
     var isPrivateEvent : Bool?
@@ -42,7 +42,7 @@ class Event {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let eventsReference = databaseReference.child("events").childByAutoId()
         let values : [String : Any]!
-        values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!, "vacancies" : event.vacancies!, "categorie" : event.categorie!, "privateEvent" : event.isPrivateEvent!] as [String : Any]
+        values = ["userID" : event.creatorID!, "title" : event.title!, "date" : Int((event.date?.timeIntervalSince1970)!), "description" : event.description!, "image" : "party.jpg", "locationName" : event.locationName!, "vacancies" : event.vacancies!, "categorie" : event.categorie?.id! as Any, "privateEvent" : event.isPrivateEvent!] as [String : Any]
         eventsReference.updateChildValues(values) { (error, reference) in
             eventGroup.enter()
             if error != nil {
@@ -122,7 +122,11 @@ class Event {
                         let locationName = (dic.value["locationName"] as! String)
                         let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
                         event.vacancies = vacancies
-                        event.categorie = categorie
+                        eventGroup.enter()
+                        EventCategorie.findById(id: categorie, completion: { (categorie) in
+                            event.categorie = categorie
+                            eventGroup.leave()
+                        })
                         event.image = UIImage(named: "\(image)")
                         event.isPrivateEvent = privacy
                         if event.isPrivateEvent! {

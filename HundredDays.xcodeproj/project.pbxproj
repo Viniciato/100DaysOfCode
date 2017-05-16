@@ -43,6 +43,7 @@
 		D5ECC80D1ECAC79B00707739 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC80B1ECAC79B00707739 /* UserProfile.storyboard */; };
 		D5ECC80F1ECAC99C00707739 /* SearchUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */; };
 		D5ECC8121ECACA5900707739 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC8101ECACA5900707739 /* Notifications.storyboard */; };
+		D5ECC8141ECB731E00707739 /* EventCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECC8131ECB731E00707739 /* EventCategorie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		D5ECC80C1ECAC79B00707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
 		D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchUser.storyboard; sourceTree = "<group>"; };
 		D5ECC8111ECACA5900707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
+		D5ECC8131ECB731E00707739 /* EventCategorie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategorie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				D509825B1E9F4CE3005C64AE /* EventCell.swift */,
 				D50982631E9F5C2C005C64AE /* Event.swift */,
 				D523A5671EA5611A00C90FEB /* UserProfile.swift */,
+				D5ECC8131ECB731E00707739 /* EventCategorie.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				D595AF161EB119F4005A176B /* SearchUserCell.swift in Sources */,
 				D50982541E9B02BD005C64AE /* EditProfileController.swift in Sources */,
 				D5C7A42F1EA4521000F24BB4 /* Variables.swift in Sources */,
+				D5ECC8141ECB731E00707739 /* EventCategorie.swift in Sources */,
 				D50982481E98A72B005C64AE /* LoginPageController.swift in Sources */,
 				D5C7A42D1EA0353000F24BB4 /* ShowEventController.swift in Sources */,
 				D509825D1E9F4CE3005C64AE /* EventCell.swift in Sources */,

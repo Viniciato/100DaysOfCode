@@ -17,8 +17,8 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var eventLocation : CLLocationCoordinate2D!
     var eventLocationName : String!
     var googleMapsView : GMSMapView!
-    var categorie : String!
-    var categories = ["Festa","Show Beneficiente","Tecnologia","Palestra"]
+    var categorie : EventCategorie!
+    var categories : [EventCategorie]!
     var guests = [String]()
     
     // MARK : - Outlets
@@ -44,7 +44,6 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         self.setupGoogleMapsView()
-        print(self.event.guests)
         self.guests = self.event.guests
     }
     
@@ -62,8 +61,11 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func setupEventCategoryPicker(){
-        self.eventCategoryPicker.dataSource = self
-        self.eventCategoryPicker.delegate = self
+        EventCategorie.findAll { (categories) in
+            self.categories = categories
+            self.eventCategoryPicker.dataSource = self
+            self.eventCategoryPicker.delegate = self
+        }
     }
     
     func setupDescriptionTextView() {
@@ -156,7 +158,7 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        return categories[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
