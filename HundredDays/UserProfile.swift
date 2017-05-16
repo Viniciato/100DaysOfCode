@@ -118,7 +118,7 @@ class UserProfile : CustomStringConvertible{
                 let image = UIImage(data: data!)
                 self.profileImage = image
                 completion(true)
-                }.resume()
+            }.resume()
         }
     }
     

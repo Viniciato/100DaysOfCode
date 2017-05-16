@@ -92,9 +92,11 @@ class NewEventController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             let locationName = self.eventLocationName
             self.event = Event(creatorID: userID!, title: title!, coordinate: coordinate!, date: date, description: description!, locationName: locationName!)
             self.event.vacancies = 0
+            self.event.isPrivateEvent = true
             if !self.eventPrivacySwitch.isOn {
                 let vacancies = self.eventVacanciesTextView.text
                 self.event.vacancies = Int(vacancies!)
+                self.event.isPrivateEvent = false
             }
             self.event.guests = self.guests
             self.event.categorie = self.categorie

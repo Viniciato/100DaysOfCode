@@ -32,15 +32,20 @@ class SearchUserCell: UITableViewCell {
         self.setFollowButton()
         self.userNameLabel.text = self.user.name?.capitalized
         if self.user.profileImage == nil {
-            NotificationCenter.default.addObserver(self, selector: #selector(SearchUserCell.refreshProfileImage), name: NSNotification.Name(rawValue: "imageLoaded\(self.user.userID)"), object: nil)
+            self.user.downloadProfileImage(completion: { (bool) in
+                if bool {
+                    self.refreshProfileImage()
+                }
+            })
         }else {
             self.refreshProfileImage()
         }
     }
     
     func refreshProfileImage() {
-        NotificationCenter.default.removeObserver(self)
-        self.profileImageView.image = self.user.profileImage
+        DispatchQueue.main.async {
+            self.profileImageView.image = self.user.profileImage
+        }
     }
     
     func setFollowButton(){
