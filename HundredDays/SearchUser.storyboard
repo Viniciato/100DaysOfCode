@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Buscar-->
+        <scene sceneID="rK9-Oe-6wf">
+            <objects>
+                <navigationController storyboardIdentifier="SearchUser" automaticallyAdjustsScrollViewInsets="NO" id="zef-FE-4ml" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Buscar" id="nzo-e9-1k8"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIM-wS-dbj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="64e-y0-Xo4" kind="relationship" relationship="rootViewController" id="pn2-Po-Cbi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nEC-kl-K5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4478" y="-886"/>
+        </scene>
+        <!--Search User Controller-->
+        <scene sceneID="Xgc-wW-BkE">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="64e-y0-Xo4" customClass="SearchUserController" customModule="HundredDays" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NMC-Iw-IDL"/>
+                        <viewControllerLayoutGuide type="bottom" id="PbE-dV-N95"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OTO-Ai-nvi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="47" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JIi-yw-NtR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PbE-dV-N95" firstAttribute="top" secondItem="JIi-yw-NtR" secondAttribute="bottom" id="67a-j5-hI5"/>
+                            <constraint firstAttribute="trailing" secondItem="JIi-yw-NtR" secondAttribute="trailing" id="Xfc-41-6GF"/>
+                            <constraint firstItem="JIi-yw-NtR" firstAttribute="leading" secondItem="OTO-Ai-nvi" secondAttribute="leading" id="kNQ-NT-KlW"/>
+                            <constraint firstItem="JIi-yw-NtR" firstAttribute="top" secondItem="NMC-Iw-IDL" secondAttribute="bottom" id="myQ-Zl-GQ7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tdt-ip-t9e">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Limpar" id="Aon-ht-4sx">
+                            <connections>
+                                <action selector="clearSearchs:" destination="64e-y0-Xo4" id="fKu-wR-peK"/>
+                            </connections>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do usuario" minimumFontSize="17" clearButtonMode="unlessEditing" id="WPd-SM-bxi">
+                            <rect key="frame" x="108" y="7" width="160" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" id="ZOf-LP-7cw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="srz-7D-sek">
+                                <rect key="frame" x="288" y="7" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Buscar"/>
+                                <connections>
+                                    <action selector="searchUser:" destination="64e-y0-Xo4" eventType="touchUpInside" id="EUK-W1-r74"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchUserTextField" destination="WPd-SM-bxi" id="3RJ-n1-kAQ"/>
+                        <outlet property="userNameTextField" destination="WPd-SM-bxi" id="nAv-2E-hFZ"/>
+                        <outlet property="usersTableView" destination="JIi-yw-NtR" id="LIk-co-czS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lva-54-xaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4478" y="-152"/>
+        </scene>
+    </scenes>
+</document>

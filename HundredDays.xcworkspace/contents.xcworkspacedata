@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SearchUserCell.swift">
-   </FileRef>
-   <FileRef
-      location = "group:SearchUserCell.xib">
-   </FileRef>
-   <FileRef
       location = "group:HundredDays.xcodeproj">
    </FileRef>
    <FileRef

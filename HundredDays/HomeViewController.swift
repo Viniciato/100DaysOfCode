@@ -87,7 +87,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let stor = UIStoryboard(name: "Main", bundle: nil)
+        let stor = UIStoryboard(name: "Event", bundle: nil)
         let vc = stor.instantiateViewController(withIdentifier: "ShowEventController") as! ShowEventController
         vc.event = self.events[indexPath.section]
         self.navigationController?.pushViewController(vc, animated: true)

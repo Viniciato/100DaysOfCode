@@ -38,6 +38,11 @@
 		D595AF171EB119F4005A176B /* SearchUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D595AF151EB119F4005A176B /* SearchUserCell.xib */; };
 		D5C7A42D1EA0353000F24BB4 /* ShowEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */; };
 		D5C7A42F1EA4521000F24BB4 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7A42E1EA4521000F24BB4 /* Variables.swift */; };
+		D5ECC8081ECAC48F00707739 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC8061ECAC48F00707739 /* Event.storyboard */; };
+		D5ECC80A1ECAC59C00707739 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC8091ECAC59C00707739 /* Login.storyboard */; };
+		D5ECC80D1ECAC79B00707739 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC80B1ECAC79B00707739 /* UserProfile.storyboard */; };
+		D5ECC80F1ECAC99C00707739 /* SearchUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */; };
+		D5ECC8121ECACA5900707739 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC8101ECACA5900707739 /* Notifications.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +81,11 @@
 		D595AF151EB119F4005A176B /* SearchUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchUserCell.xib; sourceTree = "<group>"; };
 		D5C7A42C1EA0353000F24BB4 /* ShowEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowEventController.swift; sourceTree = "<group>"; };
 		D5C7A42E1EA4521000F24BB4 /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		D5ECC8071ECAC48F00707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Event.storyboard; sourceTree = "<group>"; };
+		D5ECC8091ECAC59C00707739 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		D5ECC80C1ECAC79B00707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
+		D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchUser.storyboard; sourceTree = "<group>"; };
+		D5ECC8111ECACA5900707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +167,11 @@
 				D595AF151EB119F4005A176B /* SearchUserCell.xib */,
 				D509825C1E9F4CE3005C64AE /* EventCell.xib */,
 				D54372791E970F290034D771 /* Main.storyboard */,
+				D5ECC8101ECACA5900707739 /* Notifications.storyboard */,
+				D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */,
+				D5ECC80B1ECAC79B00707739 /* UserProfile.storyboard */,
+				D5ECC8091ECAC59C00707739 /* Login.storyboard */,
+				D5ECC8061ECAC48F00707739 /* Event.storyboard */,
 				D543727E1E970F290034D771 /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -266,7 +281,12 @@
 				D509825E1E9F4CE3005C64AE /* EventCell.xib in Resources */,
 				D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */,
 				D50982601E9F54A1005C64AE /* party.jpg in Resources */,
+				D5ECC8081ECAC48F00707739 /* Event.storyboard in Resources */,
+				D5ECC80D1ECAC79B00707739 /* UserProfile.storyboard in Resources */,
+				D5ECC80F1ECAC99C00707739 /* SearchUser.storyboard in Resources */,
+				D5ECC8121ECACA5900707739 /* Notifications.storyboard in Resources */,
 				D523A56A1EA57B8200C90FEB /* medal.png in Resources */,
+				D5ECC80A1ECAC59C00707739 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +386,30 @@
 				D543727F1E970F290034D771 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D5ECC8061ECAC48F00707739 /* Event.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5ECC8071ECAC48F00707739 /* Base */,
+			);
+			name = Event.storyboard;
+			sourceTree = "<group>";
+		};
+		D5ECC80B1ECAC79B00707739 /* UserProfile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5ECC80C1ECAC79B00707739 /* Base */,
+			);
+			name = UserProfile.storyboard;
+			sourceTree = "<group>";
+		};
+		D5ECC8101ECACA5900707739 /* Notifications.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5ECC8111ECACA5900707739 /* Base */,
+			);
+			name = Notifications.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
