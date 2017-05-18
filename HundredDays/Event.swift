@@ -87,65 +87,133 @@ class Event {
         }
     }
     
-    static func findAll(completion: @escaping ([Event]) -> ()){
-        let databaseReference = DatabaseReference.getDatabaseRef()
+    static func findByUser(userID: String, completion: @escaping ([Event]) -> ()) {
         var events = [Event]()
-        databaseReference.child("events").observeSingleEvent(of: .value, with: { (snapShot) in
-            let eventGroup = DispatchGroup()
-            if let dictionary = snapShot.value as? [String : [String : Any]]{
-                events.removeAll()
-                for dic in dictionary {
-                    let privacy = (dic.value["privateEvent"] as! Bool)
-                    let userID = (dic.value["userID"] as! String)
-                    var eventGuests = [String]()
-                    if privacy, let guests = (dic.value["guests"] as? [String : String]){
-                        for value in guests {
-                            eventGuests.append(value.value)
-                        }
-                    }
-                    if !privacy || eventGuests.contains((FIRAuth.auth()?.currentUser?.uid)!) || userID == FIRAuth.auth()?.currentUser?.uid{
-                        eventGroup.enter()
-                        let title = (dic.value["title"] as! String)
-                        let date = (dic.value["date"] as! Int)
-                        let description = (dic.value["description"] as! String)
-                        let image = (dic.value["image"] as! String)
-                        let categorie = (dic.value["categorie"] as! String)
-                        let vacancies = (dic.value["vacancies"] as! Int)
-                        var eventCoordinate = CLLocationCoordinate2D()
-                        if let location = (dic.value["location"] as? [String : CLLocationDegrees]){
-                            var locationValues = [CLLocationDegrees]()
-                            for value in location {
-                                locationValues.append(value.value)
-                            }
-                            eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
-                        }
-                        let locationName = (dic.value["locationName"] as! String)
-                        let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
-                        event.vacancies = vacancies
-                        eventGroup.enter()
-                        EventCategorie.findById(id: categorie, completion: { (categorie) in
-                            event.categorie = categorie
-                            eventGroup.leave()
-                        })
-                        event.image = UIImage(named: "\(image)")
-                        event.isPrivateEvent = privacy
-                        if event.isPrivateEvent! {
-                            event.guests = eventGuests
-                        }
-                        UserProfile.findById(id: userID, completion: { (user) in
-                            event.user = user
-                            events.append(event)
-                            eventGroup.leave()
-                        })
-                    }
+        let eventsDispatch = DispatchGroup()
+        let databaseReference = DatabaseReference.getDatabaseRef().child("events")
+        databaseReference.queryOrdered(byChild: "userID").queryEqual(toValue: userID).observeSingleEvent(of: .value, with: { (snapShot) in
+            if let values = snapShot.value as? [String : [String : Any]]{
+                for value in values {
+                    eventsDispatch.enter()
+                    let snap = snapValue(key: value.key, value: value.value)
+                    Event.createEventByValue(value: snap, completion: { (event) in
+                        events.append(event)
+                        eventsDispatch.leave()
+                    })
                 }
-                eventGroup.notify(queue: .main, execute: {
+                eventsDispatch.notify(queue: .main, execute: {
                     completion(events)
                 })
-            }
-            else {
+            } else {
                 completion(events)
             }
         })
     }
+    
+    static func findAll(completion: @escaping ([Event]) -> ()){
+        let databaseReference = DatabaseReference.getDatabaseRef()
+        var events = [Event]()
+        let eventsDispatch = DispatchGroup()
+        databaseReference.child("events").observeSingleEvent(of: .value, with: { (snapShot) in
+            if let values = snapShot.value as? [String : [String : Any]]{
+                for value in values {
+                    eventsDispatch.enter()
+                    let snap = snapValue(key: value.key, value: value.value)
+                    Event.createEventByValue(value: snap, completion: { (event) in
+                        events.append(event)
+                        eventsDispatch.leave()
+                    })
+                }
+                eventsDispatch.notify(queue: .main, execute: {
+                    completion(events)
+                })
+            } else {
+                completion(events)
+            }
+        })
+    }
+    
+    static func findByCategorie(categorie: EventCategorie, completion: @escaping ([Event]) -> ()){
+        let databaseReference = DatabaseReference.getDatabaseRef().child("events")
+        var events = [Event]()
+        let eventsDispatch = DispatchGroup()
+        databaseReference.queryOrdered(byChild: "categorie").queryEqual(toValue: categorie.id!).observeSingleEvent(of: .value, with: { (snapShot) in
+            if let values = snapShot.value as? [String : [String : Any]]{
+                for value in values {
+                    eventsDispatch.enter()
+                    let snap = snapValue(key: value.key, value: value.value)
+                    Event.createEventByValue(value: snap, completion: { (event) in
+                        events.append(event)
+                        eventsDispatch.leave()
+                    })
+                }
+                eventsDispatch.notify(queue: .main, execute: {
+                    completion(events)
+                })
+            } else {
+                completion(events)
+            }
+        })
+    }
+    
+    struct snapValue {
+        var key : String
+        var value : [String : Any]
+    }
+    
+    fileprivate static func createEventByValue(value : snapValue, completion: @escaping (Event) -> ()){
+        let privacy = (value.value["privateEvent"] as! Bool)
+        let userID = (value.value["userID"] as! String)
+        var eventGuests = [String]()
+        let eventsDispatch = DispatchGroup()
+        var event = Event()
+        if privacy, let guests = (value.value["guests"] as? [String : String]){
+            for val in guests {
+                eventGuests.append(val.value)
+            }
+        }
+        if !privacy || eventGuests.contains((FIRAuth.auth()?.currentUser?.uid)!) || userID == FIRAuth.auth()?.currentUser?.uid{
+            let title = (value.value["title"] as! String)
+            let date = (value.value["date"] as! Int)
+            let description = (value.value["description"] as! String)
+            let image = (value.value["image"] as! String)
+            let categorie = (value.value["categorie"] as! String)
+            let vacancies = (value.value["vacancies"] as! Int)
+            var eventCoordinate = CLLocationCoordinate2D()
+            if let location = (value.value["location"] as? [String : CLLocationDegrees]){
+                var locationValues = [CLLocationDegrees]()
+                for val in location {
+                    locationValues.append(val.value)
+                }
+                eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
+            }
+            let locationName = (value.value["locationName"] as! String)
+            event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
+            event.vacancies = vacancies
+            eventsDispatch.enter()
+            EventCategorie.findById(id: categorie, completion: { (categorie) in
+                event.categorie = categorie
+                eventsDispatch.leave()
+            })
+            event.image = UIImage(named: "\(image)")
+            event.isPrivateEvent = privacy
+            if event.isPrivateEvent! {
+                event.guests = eventGuests
+            }
+            eventsDispatch.enter()
+            UserProfile.findById(id: userID, completion: { (user) in
+                event.user = user
+                eventsDispatch.leave()
+            })
+            eventsDispatch.notify(queue: .main, execute: {
+                completion(event)
+            })
+        }
+        else {
+            completion(event)
+        }
+    }
 }
+
+
+

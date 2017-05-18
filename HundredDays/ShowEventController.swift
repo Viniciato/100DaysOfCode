@@ -58,7 +58,7 @@ class ShowEventController: UIViewController {
         self.eventCreatorName.text = self.event.user.name?.capitalized
         self.eventCreatorImageView.image = self.event.user.profileImage
         self.eventDescriptionTextView.text = self.event.description
-        self.eventVacanciesLabel.text = "\(self.event.vacancies!)"
+//        self.eventVacanciesLabel.text = "\(self.event.vacancies!)"
         let calendar = Calendar.current
         let month = calendar.component(.month, from: self.event.date!)
         let day = calendar.component(.day, from: self.event.date!)

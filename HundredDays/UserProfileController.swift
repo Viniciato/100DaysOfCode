@@ -53,7 +53,7 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK : - View Methods
     func setPullToRefresh(){
         self.refresher = UIRefreshControl()
-        self.refresher.addTarget(self, action: #selector(HomeViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
+        self.refresher.addTarget(self, action: #selector(EventsViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
         self.userEventsTableView.addSubview(self.refresher)
     }
     
@@ -113,7 +113,7 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func eventsOfUser() {
-        self.user.events { (events) in
+        Event.findByUser(userID: self.user.userID!) { (events) in
             self.events = events
             self.userEventsTableView.reloadData()
             self.numberOfEventsLabel.text = "\(self.events.count)"
@@ -178,7 +178,7 @@ class UserProfileController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let stor = UIStoryboard(name: "Main", bundle: nil)
+        let stor = UIStoryboard(name: "Event", bundle: nil)
         let vc = stor.instantiateViewController(withIdentifier: "ShowEventController") as! ShowEventController
         vc.event = self.events[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)

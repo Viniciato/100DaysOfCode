@@ -9,10 +9,11 @@
 import UIKit
 import GoogleMaps
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK : - Properties
     var events : [Event]!
     var refresher : UIRefreshControl!
+    var categorie : EventCategorie!
     
     // MARK : - Outlets
     @IBOutlet weak var eventsTableView: UITableView!
@@ -24,7 +25,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.eventsTableView.dataSource = self
         self.eventsTableView.delegate = self
         self.setPullToRefresh()
-        self.loadEvents()
+        self.loadEventsByCategorie(categorie: self.categorie)
+//        self.loadEvents()
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,18 +36,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK : - View Methods
     func setPullToRefresh(){
         self.refresher = UIRefreshControl()
-        self.refresher.addTarget(self, action: #selector(HomeViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
+        self.refresher.addTarget(self, action: #selector(EventsViewController.pullRefreshSelector), for: UIControlEvents.valueChanged)
         self.eventsTableView.addSubview(self.refresher)
     }
     
     func pullRefreshSelector() {
-        self.loadEvents()
+        self.loadEventsByCategorie(categorie: self.categorie)
     }
     
     func loadEvents() {
         self.refresher.beginRefreshing()
         Event.findAll { (events) in
             self.events = events
+            self.eventsTableView.reloadData()
+            self.refresher.endRefreshing()
+        }
+    }
+    
+    func loadEventsByCategorie(categorie: EventCategorie){
+        self.refresher.beginRefreshing()
+        Event.findByCategorie(categorie: categorie) { (events) in
+            self.events = events
+            print(events)
             self.eventsTableView.reloadData()
             self.refresher.endRefreshing()
         }

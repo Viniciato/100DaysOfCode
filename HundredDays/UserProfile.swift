@@ -70,43 +70,6 @@ class UserProfile : CustomStringConvertible{
         self.profileImageUrl = profileImageUrl
     }
     
-    func events(completion: @escaping ([Event]) -> ()) {
-        var events = [Event]()
-        let eventsDispatchGroup = DispatchGroup()
-        let databaseReference = DatabaseReference.getDatabaseRef().child("events")
-        databaseReference.queryOrdered(byChild: "userID").queryEqual(toValue: self.userID).observeSingleEvent(of: .value, with: { (snapShot) in
-            if let values = snapShot.value as? [String : [String : Any]]{
-                for value in values {
-                    eventsDispatchGroup.enter()
-                    let date = (value.value["date"] as! Int)
-                    let description = (value.value["description"] as! String)
-                    let image = (value.value["image"] as! String)
-                    var eventCoordinate = CLLocationCoordinate2D()
-                    if let location = (value.value["location"] as? [String : CLLocationDegrees]){
-                        var locationValues = [CLLocationDegrees]()
-                        for value in location {
-                            locationValues.append(value.value)
-                        }
-                        eventCoordinate = CLLocationCoordinate2D(latitude: locationValues[1], longitude: locationValues[0])
-                    }
-                    let locationName = (value.value["locationName"] as! String)
-                    let title = (value.value["title"] as! String)
-                    let userID = (value.value["userID"] as! String)
-                    let event = Event(creatorID: userID, title: title, coordinate: eventCoordinate, date: Date(timeIntervalSince1970: TimeInterval(date)), description: description, locationName: locationName)
-                    event.image = UIImage(named: "\(image)")
-                    event.user = self
-                    events.append(event)
-                    eventsDispatchGroup.leave()
-                }
-                eventsDispatchGroup.notify(queue: .main, execute: {
-                    completion(events)
-                })
-            } else{
-                completion(events)
-            }
-        })
-    }
-    
     func downloadProfileImage(completion: @escaping (Bool) -> ()){
         DispatchQueue.global().async {
             let url = URL(string: self.profileImageUrl!)

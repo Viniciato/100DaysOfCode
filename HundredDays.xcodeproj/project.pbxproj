@@ -31,7 +31,7 @@
 		D543727D1E970F290034D771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D543727C1E970F290034D771 /* Assets.xcassets */; };
 		D54372801E970F290034D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543727E1E970F290034D771 /* LaunchScreen.storyboard */; };
 		D56EEC961E98131B0026EB5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */; };
-		D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56EEC971E9817690026EB5E /* HomeViewController.swift */; };
+		D56EEC981E9817690026EB5E /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56EEC971E9817690026EB5E /* EventsViewController.swift */; };
 		D58D84851EC012C4001F712B /* SelectGuestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D84841EC012C4001F712B /* SelectGuestsController.swift */; };
 		D59083321EBCB09E003050A1 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59083311EBCB09E003050A1 /* UserKeys.swift */; };
 		D595AF161EB119F4005A176B /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D595AF141EB119F4005A176B /* SearchUserCell.swift */; };
@@ -44,6 +44,8 @@
 		D5ECC80F1ECAC99C00707739 /* SearchUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */; };
 		D5ECC8121ECACA5900707739 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECC8101ECACA5900707739 /* Notifications.storyboard */; };
 		D5ECC8141ECB731E00707739 /* EventCategorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECC8131ECB731E00707739 /* EventCategorie.swift */; };
+		D5ECC8391ECCE98A00707739 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECC8381ECCE98A00707739 /* HomeController.swift */; };
+		D5ECC83B1ECE1BFA00707739 /* CategorieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECC83A1ECE1BFA00707739 /* CategorieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +77,7 @@
 		D543727F1E970F290034D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D54372811E970F290034D771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D56EEC951E98131B0026EB5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D56EEC971E9817690026EB5E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D56EEC971E9817690026EB5E /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		D58D84841EC012C4001F712B /* SelectGuestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGuestsController.swift; sourceTree = "<group>"; };
 		D59083311EBCB09E003050A1 /* UserKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
 		D595AF141EB119F4005A176B /* SearchUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		D5ECC80E1ECAC99C00707739 /* SearchUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchUser.storyboard; sourceTree = "<group>"; };
 		D5ECC8111ECACA5900707739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Notifications.storyboard; sourceTree = "<group>"; };
 		D5ECC8131ECB731E00707739 /* EventCategorie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategorie.swift; sourceTree = "<group>"; };
+		D5ECC8381ECCE98A00707739 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		D5ECC83A1ECE1BFA00707739 /* CategorieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +136,7 @@
 		D50982561E9C8D90005C64AE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D56EEC971E9817690026EB5E /* HomeViewController.swift */,
+				D56EEC971E9817690026EB5E /* EventsViewController.swift */,
 				D50982451E98A4D4005C64AE /* RegisterController.swift */,
 				D50982611E9F5960005C64AE /* NewEventController.swift */,
 				D50982471E98A72B005C64AE /* LoginPageController.swift */,
@@ -142,6 +146,7 @@
 				D523A5651EA55FF600C90FEB /* SearchUserController.swift */,
 				D523A56B1EA57C9D00C90FEB /* UserProfileController.swift */,
 				D58D84841EC012C4001F712B /* SelectGuestsController.swift */,
+				D5ECC8381ECCE98A00707739 /* HomeController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				D50982631E9F5C2C005C64AE /* Event.swift */,
 				D523A5671EA5611A00C90FEB /* UserProfile.swift */,
 				D5ECC8131ECB731E00707739 /* EventCategorie.swift */,
+				D5ECC83A1ECE1BFA00707739 /* CategorieCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -365,9 +371,11 @@
 				D50982621E9F5960005C64AE /* NewEventController.swift in Sources */,
 				D54372761E970F290034D771 /* AppDelegate.swift in Sources */,
 				D50982521E9AFACE005C64AE /* User.swift in Sources */,
+				D5ECC83B1ECE1BFA00707739 /* CategorieCell.swift in Sources */,
 				D523A5661EA55FF600C90FEB /* SearchUserController.swift in Sources */,
-				D56EEC981E9817690026EB5E /* HomeViewController.swift in Sources */,
+				D56EEC981E9817690026EB5E /* EventsViewController.swift in Sources */,
 				D509824C1E9974A0005C64AE /* DatabaseReference.swift in Sources */,
+				D5ECC8391ECCE98A00707739 /* HomeController.swift in Sources */,
 				D50982641E9F5C2C005C64AE /* Event.swift in Sources */,
 				D58D84851EC012C4001F712B /* SelectGuestsController.swift in Sources */,
 			);
